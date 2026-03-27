@@ -4,7 +4,7 @@
  */
 
 import React from 'react';
-import { Phone, Star, Lock, Check, Clock, MapPin, Activity, ShieldCheck, ChevronRight, HeartPulse, AlertCircle, Stethoscope, MessageCircle, Home, ClipboardList, CheckCircle, Lightbulb, UserCheck, BriefcaseMedical, Heart, Instagram, Facebook } from 'lucide-react';
+import { Phone, Star, Lock, Check, Clock, MapPin, MapPinOff, Activity, ShieldCheck, ChevronRight, HeartPulse, AlertCircle, Stethoscope, MessageCircle, Home, ClipboardList, CheckCircle, Lightbulb, UserCheck, BriefcaseMedical, Heart, Instagram, Facebook, BadgeCheck, Microscope } from 'lucide-react';
 import { AccordionComponent } from './components/ui/faq-accordion';
 import { Footer } from './components/ui/modem-animated-footer';
 
@@ -98,47 +98,136 @@ export default function App() {
       </section>
 
       {/* 3. Problem Section */}
-      <section className="bg-white px-6 md:px-10 py-32 lg:py-40 w-full">
-        <div className="max-w-5xl mx-auto">
-          <div className="mb-16 text-center">
-            <div className="text-brand-600 font-bold tracking-wider uppercase text-sm mb-4">
+      <section className="relative w-full py-24 lg:py-32 px-6 md:px-10 overflow-hidden" style={{
+        fontFamily: "'DM Sans', sans-serif",
+        backgroundColor: '#f8fafc',
+        backgroundImage: 'radial-gradient(circle at top left, rgba(200, 230, 255, 0.2) 0%, transparent 40%), radial-gradient(circle at bottom right, rgba(43, 189, 186, 0.05) 0%, transparent 40%)'
+      }}>
+        <div className="max-w-5xl mx-auto w-full relative z-10">
+          {/* Header Section */}
+          <div className="text-center mb-16">
+            <p className="text-xs font-bold tracking-[0.2em] text-[#2BBDBA] uppercase mb-4">
               VOCÊ SE IDENTIFICA?
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6 tracking-tight font-display">
+            </p>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0C3A6B] mb-6 leading-tight max-w-4xl mx-auto tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
               A ferida não cicatriza mesmo com curativo caseiro?
             </h2>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
-              Milhares de brasileiros convivem com <strong>feridas crônicas de difícil cicatrização</strong> sem saber que existe um <strong>tratamento especializado</strong> que vai até a sua casa.
+            <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              Milhares de brasileiros convivem com <strong className="font-bold text-[#0C3A6B]">feridas crônicas</strong> sem saber que existe um <strong className="font-bold text-[#0C3A6B]">tratamento especializado</strong> que vai até a sua casa.
             </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-12">
-            {[
-              "A ferida está aberta há semanas ou meses, mesmo com pomada e curativo de farmácia",
-              "Tem diabetes e percebeu uma ferida no pé ou na perna que não está melhorando",
-              "Seu familiar está acamado e com escara, e sair de casa para consulta é difícil ou impossível",
-              "Já foi em vários lugares, UPA, posto de saúde, clínica, e ninguém resolveu o problema"
-            ].map((text, i) => (
-              <div key={i} className="bg-white border border-slate-200 border-l-4 border-l-red-500 rounded-xl p-6 md:p-8 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                <span className="text-2xl shrink-0">😔</span>
-                <p className="text-slate-700 leading-relaxed font-medium">
-                  {text}
-                </p>
-              </div>
-            ))}
           </div>
 
-          <div className="bg-brand-50 border border-brand-100 border-l-4 border-l-brand-600 rounded-xl p-6 md:p-8">
-            <p className="text-slate-800 leading-relaxed text-lg">
-              Se você se identificou com qualquer uma dessas situações, o <strong>Doutor Feridas Home Care</strong> foi criado para você. O especialista vai até a sua casa, com toda a tecnologia necessária para tratar o que outros não conseguiram.
-            </p>
+          {/* Grid Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            {/* Card 1 */}
+            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
+              border: '1px solid rgba(12, 58, 107, 0.08)',
+              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
+            }}>
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+                <Clock className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                  A ferida está aberta há semanas ou meses sem melhora...
+                </h3>
+                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                  ...mesmo com pomada e curativo de farmácia.
+                </p>
+              </div>
+            </article>
+
+            {/* Card 2 */}
+            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
+              border: '1px solid rgba(12, 58, 107, 0.08)',
+              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
+            }}>
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+                <Activity className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                  Tem diabetes e percebeu uma ferida no pé ou perna...
+                </h3>
+                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                  ...que não demonstra sinais de cicatrização.
+                </p>
+              </div>
+            </article>
+
+            {/* Card 3 */}
+            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
+              border: '1px solid rgba(12, 58, 107, 0.08)',
+              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
+            }}>
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+                <Home className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                  Seu familiar está acamado e com escara de pressão...
+                </h3>
+                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                  ...e sair de casa para consultas é um desafio.
+                </p>
+              </div>
+            </article>
+
+            {/* Card 4 */}
+            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
+              border: '1px solid rgba(12, 58, 107, 0.08)',
+              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
+            }}>
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+                <MapPinOff className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                  Já buscou UPAs e postos de saúde diversas vezes...
+                </h3>
+                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                  ...e ninguém resolveu definitivamente o problema.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          {/* Call to Action Banner */}
+          <div className="relative rounded-3xl overflow-hidden bg-[#0C3A6B] py-16 px-8 md:px-20 text-white flex flex-col md:flex-row items-center justify-between gap-12 mt-8 max-w-7xl mx-auto">
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#2BBDBA] via-transparent to-transparent"></div>
+            </div>
+            <div className="relative z-10 max-w-2xl text-center md:text-left">
+              <p className="text-xl md:text-2xl font-medium leading-relaxed mb-0" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+                Se você se identificou com qualquer uma dessas situações, o <span className="text-[#2BBDBA] font-bold">Doutor Feridas Home Care</span> foi criado para você. O especialista vai até a sua casa, com toda a tecnologia necessária para tratar o que outros não conseguiram.
+              </p>
+            </div>
+            <div className="relative z-10 shrink-0">
+              <button className="bg-[#2BBDBA] text-[#0C3A6B] font-bold py-5 px-10 rounded-2xl hover:bg-[#74f6f3] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-black/20 flex items-center gap-3">
+                <MessageCircle className="w-6 h-6" />
+                Falar com Especialista
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* 4. Solution/Method Section */}
-      <section className="bg-brand-700 px-6 md:px-10 py-32 lg:py-40 w-full overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative px-6 md:px-10 py-32 lg:py-40 w-full overflow-hidden">
+        {/* Background Video */}
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/Generated%20Video%20March%2027%2C%202026%20-%203_55PM.mp4" type="video/mp4" />
+        </video>
+        {/* Blue Overlay */}
+        <div className="absolute inset-0 bg-brand-900/85 z-0"></div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
             <h2 className="text-white font-bold text-3xl md:text-4xl leading-tight mb-4">
               Como <span className="text-accent-400 underline decoration-4 underline-offset-8">funciona?</span>
@@ -220,72 +309,46 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4.5. Por que somos diferentes (Bento Grid) */}
-      <section id="diferenciais" className="bg-white px-6 md:px-10 py-32 lg:py-40 w-full">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-16 max-w-3xl mx-auto text-center">
-            <div className="text-brand-500 font-bold tracking-wider uppercase text-sm mb-4">Por que somos diferentes</div>
-            <h2 className="text-slate-900 font-bold text-3xl md:text-4xl lg:text-5xl leading-tight mb-6">
-              Por que o Doutor Feridas Home Care é referência em tratamento de feridas domiciliar no Brasil
+      {/* 4.5. Por que somos diferentes */}
+      <section id="diferenciais" className="px-6 md:px-10 py-24 lg:py-32 w-full bg-[#f8fafc]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+          <div className="order-2 md:order-1">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2BBDBA]/10 text-[#2BBDBA] rounded-full text-sm font-bold mb-6">
+              <BadgeCheck className="w-4 h-4" />
+              EXCELÊNCIA CLÍNICA
+            </div>
+            <h2 className="font-extrabold text-[#0C3A6B] text-3xl md:text-4xl mb-6 tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              Tecnologia avançada no conforto do seu lar
             </h2>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
-              Não somos um serviço de troca de curativos. Somos uma <strong>clínica especializada em cicatrização que vai até a sua casa</strong>, com tudo que você precisaria encontrar num consultório de referência.
+            <p className="text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+              Nossa equipe utiliza curativos biotecnológicos, laserterapia e terapia por pressão negativa para acelerar o processo de cicatrização, reduzindo a dor e o risco de infecções graves sem que você precise sair de casa.
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[
-              {
-                icon: Stethoscope,
-                title: "Método Dr. Evandro Reis",
-                desc: <>Mais de 20 anos exclusivamente dedicados ao <strong>tratamento de feridas crônicas</strong>. O protocolo mais completo e validado do Brasil.</>,
-                iconBg: "bg-brand-50",
-                iconColor: "text-brand-600"
-              },
-              {
-                icon: Lightbulb,
-                title: "Laserterapia em domicílio",
-                desc: <>Acesso a <strong>laserterapia para feridas crônicas</strong> diretamente na sua casa, tecnologia que acelera a cicatrização e reduz a dor.</>,
-                iconBg: "bg-amber-50",
-                iconColor: "text-amber-500"
-              },
-              {
-                icon: UserCheck,
-                title: "Enfermeiro estomaterapeuta",
-                desc: <><strong>Enfermeiro especialista em feridas</strong> com suporte médico contínuo do Dr. Evandro, não um técnico, um especialista.</>,
-                iconBg: "bg-blue-50",
-                iconColor: "text-blue-500"
-              },
-              {
-                icon: BriefcaseMedical,
-                title: "Mala completa inclusa",
-                desc: <>Todos os <strong>curativos avançados e insumos especializados</strong> chegam com o profissional. Você não precisa comprar nada.</>,
-                iconBg: "bg-indigo-50",
-                iconColor: "text-indigo-500"
-              },
-              {
-                icon: ClipboardList,
-                title: "Acompanhamento até a alta",
-                desc: <>Não é visita avulsa. É acompanhamento completo, do diagnóstico até a <strong>cicatrização total da ferida crônica</strong>.</>,
-                iconBg: "bg-orange-50",
-                iconColor: "text-orange-500"
-              },
-              {
-                icon: Heart,
-                title: "Cuidado humanizado",
-                desc: <>Tratamos a pessoa, não só a ferida. Abordagem integral que considera todas as condições de saúde do paciente.</>,
-                iconBg: "bg-rose-50",
-                iconColor: "text-rose-500"
-              }
-            ].map((item, i) => (
-              <div key={i} className="bg-white border border-slate-200 rounded-3xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col items-start">
-                <div className={`w-14 h-14 rounded-2xl ${item.iconBg} flex items-center justify-center mb-6`}>
-                  <item.icon className={`w-7 h-7 ${item.iconColor}`} strokeWidth={1.5} />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
+                <ShieldCheck className="w-6 h-6 text-[#2BBDBA]" />
+                <span className="font-bold text-[#0C3A6B]" style={{ fontFamily: "'DM Sans', sans-serif" }}>Protocolos de Enfermagem Rigorosos</span>
               </div>
-            ))}
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
+                <Microscope className="w-6 h-6 text-[#2BBDBA]" />
+                <span className="font-bold text-[#0C3A6B]" style={{ fontFamily: "'DM Sans', sans-serif" }}>Insumos de Alta Performance</span>
+              </div>
+            </div>
+          </div>
+          <div className="order-1 md:order-2 relative">
+            <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
+              <img alt="Clinical excellence at home" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6AAkqTgGJcuVRJA3F--orHhK31PSnKx2tGA8FG64LvphYuSeJ6ldfJkFu52czecANMQlQGxT1HW3Jso8_sJotgr5N-S304KYPjC2Quhc3g4HQ76b2BmBhK08WWKyVoi9FnqQ5AJ4-AyWY94RQHhI_Em2y_0X75_17AYThi8Lm0X8hHlIadLU81dYZ-l9kitOHUjO2TGYmQR7j3fc_KfIXc7IhbN35jGQXCoO-dycb2QWb3celxWp3W2zdKg8hZSJgQelPv7mQDd5u" referrerPolicy="no-referrer" />
+            </div>
+            {/* Float card */}
+            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-50 max-w-[200px]">
+              <div className="flex items-center gap-1 text-yellow-400 mb-2">
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+                <Star className="w-4 h-4 fill-current" />
+              </div>
+              <p className="text-sm font-bold text-[#0C3A6B] italic" style={{ fontFamily: "'DM Sans', sans-serif" }}>"Mudou a vida da minha mãe após meses de sofrimento."</p>
+            </div>
           </div>
         </div>
       </section>
@@ -296,7 +359,7 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-end gap-6">
             <div>
               <div className="text-brand-500 font-bold tracking-wider uppercase text-sm mb-2">Indicações</div>
-              <h2 className="text-slate-900 uppercase font-bold text-3xl md:text-4xl leading-tight max-w-xl">
+              <h2 className="text-slate-900 uppercase font-bold text-[5.5vw] sm:text-3xl md:text-4xl leading-tight max-w-xl whitespace-nowrap tracking-tight">
                 FERIDAS QUE TRATAMOS EM CASA
               </h2>
             </div>
