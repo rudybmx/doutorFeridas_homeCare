@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(netstat -ano)",
+      "Bash(findstr \":3000 :3001\")",
+      "Bash(findstr \"LISTENING\")",
+      "Bash(taskkill /PID 8120 /F)",
+      "Bash(taskkill /PID 4824 /F)",
+      "Bash(taskkill /PID 2680 /F)",
+      "Bash(taskkill /PID 11592 /F)",
+      "Bash(cmd /c \"taskkill /PID 8120 /F & taskkill /PID 4824 /F & taskkill /PID 2680 /F & taskkill /PID 11592 /F\")",
+      "Bash(cmd /c \"taskkill /PID 8120 /F\")",
+      "Bash(powershell -Command \"Stop-Process -Id 8120,4824,2680,11592 -Force -ErrorAction SilentlyContinue; Write-Host ''Processos encerrados''\")",
+      "Bash(powershell -Command \"netstat -ano | Select-String '':300[01]\\\\s.*LISTENING''\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}

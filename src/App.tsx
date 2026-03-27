@@ -4,8 +4,8 @@
  */
 
 import React from 'react';
-import { Phone, Star, Lock, Check, Clock, MapPin, MapPinOff, Activity, ShieldCheck, ChevronRight, HeartPulse, AlertCircle, Stethoscope, MessageCircle, Home, ClipboardList, CheckCircle, Lightbulb, UserCheck, BriefcaseMedical, Heart, Instagram, Facebook, BadgeCheck, Microscope, FileText, HomeIcon, StethoscopeIcon, Info, Verified, HeartIcon, ClipboardCheck, Briefcase, Award, ArrowLeft, ArrowRight, Bed, Edit3, UserCheckIcon, StethoscopeIcon as StethoscopeIconAlt, Car, Plus, Shield, Zap, Sparkles } from 'lucide-react';
-import { motion } from "motion/react";
+import { Phone, Star, Lock, Check, Clock, MapPin, MapPinOff, Activity, ShieldCheck, ChevronRight, HeartPulse, AlertCircle, Stethoscope, MessageCircle, Home, ClipboardList, CheckCircle, Lightbulb, UserCheck, BriefcaseMedical, Heart, Instagram, Facebook, BadgeCheck, Microscope, FileText, HomeIcon, StethoscopeIcon, Info, Verified, HeartIcon, ClipboardCheck, Briefcase, Award, ArrowLeft, ArrowRight, Bed, Edit3, UserCheckIcon, StethoscopeIcon as StethoscopeIconAlt, Car, Plus, Shield, Zap, Sparkles, Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from "motion/react";
 import { AccordionComponent } from './components/ui/faq-accordion';
 import { Footer } from './components/ui/modem-animated-footer';
 
@@ -49,33 +49,81 @@ const treatments = [
 ];
 
 export default function App() {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 relative pb-24">
       {/* 1. Navigation Bar (Floating) */}
-      <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl bg-white/95 backdrop-blur-md rounded-full px-4 md:px-6 py-3 flex justify-between items-center z-50 shadow-sm border border-slate-200/50">
-        <div className="flex items-center">
+      <nav className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] md:w-[95%] max-w-5xl bg-white/95 backdrop-blur-md rounded-full px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center z-50 shadow-sm border border-slate-200/50">
+        <div className="flex items-center gap-2">
+          <button 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-1.5 text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
+            aria-label="Menu"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
           <img 
             src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logo_doutor_feridas_home_care.png" 
             alt="Doutor Feridas" 
-            className="h-10 md:h-12 object-contain"
+            className="h-8 md:h-12 object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
         
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700">
+        <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700 uppercase tracking-tight">
           <a href="#inicio" className="hover:text-brand-500 transition-colors">Início</a>
           <a href="#tratamentos" className="hover:text-brand-500 transition-colors">Tratamentos</a>
           <a href="#diferenciais" className="hover:text-brand-500 transition-colors">Diferenciais</a>
           <a href="#faq" className="hover:text-brand-500 transition-colors">FAQ</a>
         </div>
 
-        <button className="btn-whatsapp rounded-full px-5 md:px-6 py-2.5 flex items-center gap-2 font-bold text-sm">
-          <Phone className="w-4 h-4" />
-          <span className="hidden md:inline">Agendar visita</span>
-          <span className="md:hidden">Agendar</span>
+        <button className="btn-whatsapp rounded-full px-4 md:px-6 py-2 md:py-2.5 flex items-center gap-2 font-bold text-xs md:text-sm">
+          <Phone className="w-3.5 h-3.5 md:w-4 h-4" />
+          <span className="hidden sm:inline">Agendar visita</span>
+          <span className="sm:hidden">Agendar</span>
         </button>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 z-40 bg-white pt-24 px-6 md:hidden"
+          >
+            <div className="flex flex-col gap-6 text-xl font-bold text-slate-800 uppercase tracking-wide">
+              {[
+                { label: 'Início', href: '#inicio' },
+                { label: 'Tratamentos', href: '#tratamentos' },
+                { label: 'Diferenciais', href: '#diferenciais' },
+                { label: 'Dúvidas (FAQ)', href: '#faq' }
+              ].map((item) => (
+                <a 
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="flex items-center justify-between py-4 border-b border-slate-100"
+                >
+                  {item.label}
+                  <ChevronRight className="w-5 h-5 text-slate-400" />
+                </a>
+              ))}
+              <a 
+                href="#"
+                className="mt-8 btn-whatsapp rounded-2xl py-5 flex items-center justify-center gap-3 text-lg"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Phone className="w-5 h-5" />
+                FALAR COM ESPECIALISTA
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* 2. Hero Section */}
       <section id="inicio" className="h-[calc(90vh+100px)] min-h-[700px] rounded-[2rem] mx-2 md:mx-4 mt-4 relative overflow-hidden flex flex-col justify-center items-center pb-16 px-6 md:px-10 shadow-sm group">
@@ -667,7 +715,9 @@ export default function App() {
                 },
               }}
               style={{ width: "fit-content" }}
-              whileHover={{ animationPlayState: "paused" }}
+              whileHover={{ x: undefined }} // Stop animation on hover
+              drag="x" // Enable manual swipe on mobile
+              dragConstraints={{ left: -2256, right: 0 }}
             >
               {[...treatments, ...treatments].map((item, idx) => (
                 <div key={idx} className="min-w-[300px] md:min-w-[350px] flex-shrink-0">
@@ -740,9 +790,9 @@ export default function App() {
           </header>
 
           {/* Stats Grid */}
-          <section className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-16 mb-20 w-full">
+          <section className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-8 lg:gap-16 mb-20 w-full">
             {/* Stat 1 */}
-            <article className="relative w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center" style={{
+            <article className="relative w-[210px] h-[210px] sm:w-[250px] sm:h-[250px] rounded-full flex flex-col items-center justify-center" style={{
               background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
               boxShadow: 'inset 0 0 20px rgba(43, 189, 186, 0.2)',
               border: '1px solid rgba(255,255,255,0.1)',
@@ -758,20 +808,20 @@ export default function App() {
                 }} />
               </div>
               <div className="z-20 flex flex-col items-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-3 sm:mb-4" style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(46, 196, 182, 0.3)',
                   boxShadow: '0 0 10px rgba(46, 196, 182, 0.2)',
                 }}>
-                  <FileText className="w-5 h-5 text-[#2BBDBA]" />
+                  <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-[#2BBDBA]" />
                 </div>
-                <h3 className="text-4xl font-bold text-white mb-1">+20 ANOS</h3>
-                <p className="text-sm text-gray-300 uppercase tracking-wide text-center">DE EXPERIÊNCIA</p>
+                <h3 className="text-3xl sm:text-4xl font-bold text-white mb-1 tracking-tight">+20 ANOS</h3>
+                <p className="text-[10px] sm:text-xs text-gray-300 uppercase tracking-widest text-center px-4">DE EXPERIÊNCIA</p>
               </div>
             </article>
 
             {/* Stat 2 (Middle - larger) */}
-            <article className="relative w-[280px] h-[280px] rounded-full flex flex-col items-center justify-center" style={{
+            <article className="relative w-[240px] h-[240px] sm:w-[280px] sm:h-[280px] rounded-full flex flex-col items-center justify-center" style={{
               background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
               boxShadow: 'inset 0 0 20px rgba(43, 189, 186, 0.2)',
               border: '1px solid rgba(255,255,255,0.1)',
@@ -786,21 +836,21 @@ export default function App() {
                   opacity: 0.95,
                 }} />
               </div>
-              <div className="z-20 flex flex-col items-center mt-4">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{
+              <div className="z-20 flex flex-col items-center sm:mt-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-3 sm:mb-4" style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(46, 196, 182, 0.3)',
                   boxShadow: '0 0 10px rgba(46, 196, 182, 0.2)',
                 }}>
-                  <UserCheck className="w-5 h-5 text-[#2BBDBA]" />
+                  <UserCheck className="w-4 h-4 sm:w-5 sm:h-5 text-[#2BBDBA]" />
                 </div>
-                <h3 className="text-4xl font-bold text-white mb-1">+8M CASOS</h3>
-                <p className="text-sm text-gray-300 uppercase tracking-wide text-center">TRATADOS NO BRASIL</p>
+                <h3 className="text-3xl sm:text-4xl font-bold text-white mb-1 tracking-tight">+8M CASOS</h3>
+                <p className="text-[10px] sm:text-xs text-gray-300 uppercase tracking-widest text-center px-4">TRATADOS NO BRASIL</p>
               </div>
             </article>
 
             {/* Stat 3 */}
-            <article className="relative w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center" style={{
+            <article className="relative w-[210px] h-[210px] sm:w-[250px] sm:h-[250px] rounded-full flex flex-col items-center justify-center" style={{
               background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
               boxShadow: 'inset 0 0 20px rgba(43, 189, 186, 0.2)',
               border: '1px solid rgba(255,255,255,0.1)',
@@ -816,15 +866,15 @@ export default function App() {
                 }} />
               </div>
               <div className="z-20 flex flex-col items-center">
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mb-3 sm:mb-4" style={{
                   background: 'rgba(255, 255, 255, 0.05)',
                   border: '1px solid rgba(46, 196, 182, 0.3)',
                   boxShadow: '0 0 10px rgba(46, 196, 182, 0.2)',
                 }}>
-                  <Home className="w-5 h-5 text-[#2BBDBA]" />
+                  <Home className="w-4 h-4 sm:w-5 sm:h-5 text-[#2BBDBA]" />
                 </div>
-                <h3 className="text-4xl font-bold text-white mb-1">100%</h3>
-                <p className="text-sm text-gray-300 uppercase tracking-wide text-center px-4">ATENDIMENTO DOMICILIAR</p>
+                <h3 className="text-3xl sm:text-4xl font-bold text-white mb-1 tracking-tight">100%</h3>
+                <p className="text-[10px] sm:text-xs text-gray-300 uppercase tracking-widest text-center px-4">ATENDIMENTO DOMICILIAR</p>
               </div>
             </article>
           </section>
@@ -841,6 +891,7 @@ export default function App() {
 
       {/* 6.5. Indicado para você */}
       <motion.section 
+        id="diferenciais"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
@@ -971,6 +1022,7 @@ export default function App() {
 
       {/* 6.7. FAQ Section */}
       <motion.div
+        id="faq"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
