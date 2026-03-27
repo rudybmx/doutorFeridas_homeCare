@@ -5,6 +5,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+:root {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-brand-50: #f0f4f8;
   --color-brand-100: #d9e4f0;
@@ -40,6 +44,113 @@ body {
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-100%); }
+}
+
+@keyframes carDrive {
+  0%   { left: 0%;   transform: translateX(-50%) translateY(-50%) scaleX(1); }
+  49%  { left: 100%; transform: translateX(-50%) translateY(-50%) scaleX(1); }
+  50%  { left: 100%; transform: translateX(-50%) translateY(-50%) scaleX(-1); }
+  99%  { left: 0%;   transform: translateX(-50%) translateY(-50%) scaleX(-1); }
+  100% { left: 0%;   transform: translateX(-50%) translateY(-50%) scaleX(1); }
+}
+
+@keyframes ledGlow {
+  from {
+    border-color: rgba(43, 189, 186, 0.45);
+    box-shadow:
+      0 0 6px 1px rgba(43, 189, 186, 0.4),
+      0 0 18px 4px rgba(43, 189, 186, 0.18),
+      inset 0 0 10px rgba(43, 189, 186, 0.1);
+  }
+  to {
+    border-color: rgba(43, 189, 186, 1);
+    box-shadow:
+      0 0 14px 3px rgba(43, 189, 186, 0.85),
+      0 0 38px 8px rgba(43, 189, 186, 0.45),
+      0 0 70px 18px rgba(43, 189, 186, 0.2),
+      inset 0 0 22px rgba(43, 189, 186, 0.3);
+  }
+}
+
+.led-ring {
+  border: 2px solid rgba(43, 189, 186, 0.5);
+  animation: ledGlow 2.4s ease-in-out infinite alternate;
+}
+
+.card-elegant {
+  background: white;
+  border: 1px solid rgba(12, 58, 107, 0.08);
+  box-shadow: 0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05);
+  transition: all 0.3s ease;
+}
+
+.card-elegant:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(12, 58, 107, 0.1), 0 10px 10px -5px rgba(12, 58, 107, 0.04);
+  border-color: rgba(43, 189, 186, 0.3);
+}
+
+.footer-bracket {
+  border-left: 4px solid #0C3A6B;
+  background: linear-gradient(to right, rgba(12, 58, 107, 0.03), transparent);
+}
+
+.card-shadow {
+  box-shadow: 0 10px 30px -5px rgba(12, 58, 107, 0.05);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.carousel-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.btn-whatsapp {
+  @apply relative overflow-hidden bg-gradient-to-br from-[#25D366] via-[#22c35e] to-[#128C7E] text-white 
+         shadow-[0_10px_25px_-5px_rgba(37,211,102,0.4),0_8px_10px_-6px_rgba(0,0,0,0.1),inset_0_1px_rgba(255,255,255,0.3)]
+         border border-[#25D366]/50 transition-all duration-300 active:scale-[0.97] hover:shadow-[0_15px_35px_-5px_rgba(37,211,102,0.6)]
+         hover:-translate-y-0.5;
+}
+
+.btn-whatsapp::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full transition-transform duration-1000 ease-in-out;
+}
+
+.btn-whatsapp:hover::after {
+  @apply translate-x-full;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.8; filter: brightness(1.3) saturate(1.2); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-10deg); }
+  75% { transform: rotate(10deg); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
 }
 
 .animate-marquee {

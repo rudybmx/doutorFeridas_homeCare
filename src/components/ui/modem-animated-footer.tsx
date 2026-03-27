@@ -47,8 +47,13 @@ export const Footer = ({
           <div className="flex flex-col mb-12 w-full">
             <div className="w-full flex flex-col items-center">
               <div className="space-y-2 flex flex-col items-center flex-1">
+                {brandIcon && (
+                  <div className="mb-4">
+                    {brandIcon}
+                  </div>
+                )}
                 <div className="flex items-center gap-2">
-                  <span className="text-white text-3xl font-bold">
+                  <span className="text-white text-3xl font-bold font-display tracking-tight">
                     {brandName}
                   </span>
                 </div>

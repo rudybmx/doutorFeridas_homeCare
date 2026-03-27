@@ -4,19 +4,48 @@
  */
 
 import React from 'react';
-import { Phone, Star, Lock, Check, Clock, MapPin, MapPinOff, Activity, ShieldCheck, ChevronRight, HeartPulse, AlertCircle, Stethoscope, MessageCircle, Home, ClipboardList, CheckCircle, Lightbulb, UserCheck, BriefcaseMedical, Heart, Instagram, Facebook, BadgeCheck, Microscope } from 'lucide-react';
+import { Phone, Star, Lock, Check, Clock, MapPin, MapPinOff, Activity, ShieldCheck, ChevronRight, HeartPulse, AlertCircle, Stethoscope, MessageCircle, Home, ClipboardList, CheckCircle, Lightbulb, UserCheck, BriefcaseMedical, Heart, Instagram, Facebook, BadgeCheck, Microscope, FileText, HomeIcon, StethoscopeIcon, Info, Verified, HeartIcon, ClipboardCheck, Briefcase, Award, ArrowLeft, ArrowRight, Bed, Edit3, UserCheckIcon, StethoscopeIcon as StethoscopeIconAlt, Car, Plus, Shield, Zap, Sparkles } from 'lucide-react';
+import { motion } from "motion/react";
 import { AccordionComponent } from './components/ui/faq-accordion';
 import { Footer } from './components/ui/modem-animated-footer';
 
-const servicesList = [
-  { title: "Pé Diabético", img: "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop" },
-  { title: "Escara (Lesão por Pressão)", img: "https://images.unsplash.com/photo-1576091160550-2173ff9e594b?q=80&w=800&auto=format&fit=crop" },
-  { title: "Úlcera Venosa", img: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop" },
-  { title: "Ferida Pós-Cirúrgica", img: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=800&auto=format&fit=crop" },
-  { title: "Pé Diabético", img: "https://images.unsplash.com/photo-1584515933487-779824d29309?q=80&w=800&auto=format&fit=crop" },
-  { title: "Escara (Lesão por Pressão)", img: "https://images.unsplash.com/photo-1576091160550-2173ff9e594b?q=80&w=800&auto=format&fit=crop" },
-  { title: "Úlcera Venosa", img: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=800&auto=format&fit=crop" },
-  { title: "Ferida Pós-Cirúrgica", img: "https://images.unsplash.com/photo-1581594693702-fbdc51b2763b?q=80&w=800&auto=format&fit=crop" }
+const treatments = [
+  {
+    title: "Feridas Crônicas",
+    img: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem03_feridas_cronicas.webp",
+    desc: "Tratamento especializado para feridas de longa duração que não fecham.",
+    icon: <Clock className="w-5 h-5" />
+  },
+  {
+    title: "Feridas em Diabéticos",
+    img: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem05_feridas_diabeticos.jpeg",
+    desc: "Cuidados preventivos e curativos avançados para o pé diabético.",
+    icon: <Stethoscope className="w-5 h-5" />
+  },
+  {
+    title: "Feridas por Má Circulação",
+    img: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem06_feridas_macirculacao.webp",
+    desc: "Úlceras venosas e arteriais tratadas com as melhores tecnologias.",
+    icon: <Activity className="w-5 h-5" />
+  },
+  {
+    title: "Feridas Pós-Cirúrgicas",
+    img: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem07_feridas_p%C3%B3s_cirurgia.jpg",
+    desc: "Acompanhamento seguro para uma recuperação cirúrgica sem complicações.",
+    icon: <ShieldCheck className="w-5 h-5" />
+  },
+  {
+    title: "Lesões por Pressão",
+    img: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem08_feridas_pressao.jpg",
+    desc: "Prevenção e tratamento de escaras em pacientes com mobilidade reduzida.",
+    icon: <Bed className="w-5 h-5" />
+  },
+  {
+    title: "Feridas Infectadas",
+    img: "https://docs.qozt.com.br/landing_pages/doutorFeridas/Imagem04_feridas_infectadas.jpeg",
+    desc: "Controle rigoroso de infecção e biofilme para acelerar a cicatrização.",
+    icon: <AlertCircle className="w-5 h-5" />
+  }
 ];
 
 export default function App() {
@@ -26,9 +55,9 @@ export default function App() {
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl bg-white/95 backdrop-blur-md rounded-full px-4 md:px-6 py-3 flex justify-between items-center z-50 shadow-sm border border-slate-200/50">
         <div className="flex items-center">
           <img 
-            src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logoDoutorFeridas.png" 
+            src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logo_doutor_feridas_home_care.png" 
             alt="Doutor Feridas" 
-            className="h-8 md:h-10 object-contain"
+            className="h-10 md:h-12 object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
@@ -41,7 +70,7 @@ export default function App() {
           <a href="#faq" className="hover:text-brand-500 transition-colors">FAQ</a>
         </div>
 
-        <button className="bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] text-white rounded-full px-5 md:px-6 py-2.5 flex items-center gap-2 font-bold text-sm transition-all duration-300 active:scale-95 shadow-[0_0_15px_rgba(37,211,102,0.3)] hover:shadow-[0_0_25px_rgba(37,211,102,0.5)] border border-[#25D366]/50">
+        <button className="btn-whatsapp rounded-full px-5 md:px-6 py-2.5 flex items-center gap-2 font-bold text-sm">
           <Phone className="w-4 h-4" />
           <span className="hidden md:inline">Agendar visita</span>
           <span className="md:hidden">Agendar</span>
@@ -49,171 +78,247 @@ export default function App() {
       </nav>
 
       {/* 2. Hero Section */}
-      <section id="inicio" className="h-[calc(90vh+100px)] min-h-[700px] rounded-[2rem] mx-2 md:mx-4 mt-4 relative overflow-hidden flex flex-col justify-center items-center pb-16 px-6 md:px-10 shadow-sm">
-        {/* Background Image */}
+      <section id="inicio" className="h-[calc(90vh+100px)] min-h-[700px] rounded-[2rem] mx-2 md:mx-4 mt-4 relative overflow-hidden flex flex-col justify-center items-center pb-16 px-6 md:px-10 shadow-sm group">
+        {/* Background Image with subtle zoom effect */}
         <div 
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] group-hover:scale-110"
           style={{ backgroundImage: 'url("https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/van_doutor_feridas.png")' }}
         />
-        {/* Subtle Gradient Overlay */}
-        <div className="absolute inset-0 z-0 bg-brand-900/60" />
+        
+        {/* Advanced Vignette and Dynamic Overlay */}
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-900/40 via-brand-900/60 to-brand-900/90" />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(12,58,107,0.4)_100%)]" />
 
-        <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center text-center mt-16">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-8 backdrop-blur-md">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-500"></span>
-            </span>
-            Plantão 24h Disponível
-          </div>
-
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center mt-16"
+        >
           {/* Main Headline */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white uppercase leading-tight mb-6 font-display">
-            TRATAMENTO ESPECIALIZADO DE <span className="text-accent-400">FERIDAS CRÔNICAS</span> NA SUA CASA.
-          </h1>
+          <motion.h1 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="text-[2.618rem] md:text-[3.5rem] lg:text-[4.236rem] font-bold text-white leading-[1.1] mb-8 font-display drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] tracking-tight"
+          >
+            Tratamento especializado de <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 via-accent-400 to-accent-300 animate-pulse-slow">
+              feridas crônicas
+            </span> <br/>
+            na sua casa.
+          </motion.h1>
 
-          {/* Subheadline */}
-          <p className="max-w-2xl text-white/90 text-base md:text-xl mb-10 font-medium leading-relaxed">
-            Sem sair de casa. Sem fila. Sem hospital. Nosso <strong>enfermeiro especialista em feridas</strong> vai até você com <strong>tecnologia laser</strong>, curativos avançados e o protocolo validado pelo Dr. Evandro Reis.
-          </p>
+          {/* Subheadline with Glassmorphism Layer */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="relative px-6 py-4 mb-12"
+          >
+            <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-2xl -rotate-1 hidden md:block" />
+            <p className="relative z-10 max-w-2xl text-white/95 text-base md:text-xl font-medium leading-relaxed drop-shadow-sm">
+              Sem sair de casa. Sem fila. Sem hospital. Nosso <strong>enfermeiro especialista</strong> vai até você com <strong>tecnologia laser</strong>, curativos avançados e o protocolo validado pelo Doutor Feridas.
+            </p>
+          </motion.div>
 
-          {/* CTA Button */}
-          <button className="relative overflow-hidden group bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] text-white rounded-full px-10 md:px-16 py-4 md:py-6 flex items-center justify-center gap-4 font-bold text-xl md:text-2xl transition-all duration-300 active:scale-95 shadow-[0_0_40px_-10px_rgba(37,211,102,0.5)] hover:shadow-[0_0_60px_-15px_rgba(37,211,102,0.7)] w-full sm:w-auto min-w-[320px] md:min-w-[420px] mb-14 border border-[#25D366]/50">
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
-            <Phone className="w-6 h-6 md:w-7 md:h-7 relative z-10 animate-pulse" />
-            <span className="relative z-10 tracking-wide">Agendar visita</span>
-          </button>
+          {/* CTA Button with added impact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="w-full flex flex-col items-center"
+          >
+            <button className="btn-whatsapp rounded-full px-8 md:px-12 py-3.5 md:py-4.5 flex items-center justify-center gap-3 md:gap-4 font-bold text-lg md:text-xl w-full sm:w-auto min-w-[300px] md:min-w-[400px] mb-12 group/btn">
+              <Phone className="w-5 h-5 md:w-6 md:h-6 relative z-10 animate-shake" />
+              <span className="relative z-10 tracking-wide">Agendar visita agora</span>
+              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+            </button>
+          </motion.div>
 
-          {/* Pills */}
-          <div className="flex flex-wrap justify-center gap-3">
-            {['Curativo domiciliar', 'Laserterapia', 'Avaliação gratuita'].map((pill, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-md text-white rounded-full px-5 py-2.5 text-sm border border-white/20 flex items-center gap-2 font-medium">
-                <Check className="w-4 h-4 text-accent-400" />
-                {pill}
+          {/* Premium Pills Section */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.2 }}
+            className="flex flex-wrap justify-center gap-4 mt-4"
+          >
+            {[
+              { text: 'Curativo domiciliar', icon: <HomeIcon className="w-5 h-5 text-accent-400" /> },
+              { text: 'Laserterapia', icon: <Zap className="w-5 h-5 text-accent-400" /> },
+              { text: 'Avaliação gratuita', icon: <Sparkles className="w-5 h-5 text-accent-400" /> }
+            ].map((pill, i) => (
+              <div key={i} className="bg-white/10 backdrop-blur-xl text-white rounded-2xl px-6 py-3.5 text-base border border-white/20 flex items-center gap-3 font-semibold shadow-lg hover:bg-white/20 hover:border-white/40 transition-all cursor-default">
+                {pill.icon}
+                {pill.text}
               </div>
             ))}
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Floating background shapes for extra depth */}
+        <div className="absolute top-1/4 -left-20 w-64 h-64 bg-accent-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-brand-500/10 rounded-full blur-[150px] pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
       </section>
 
       {/* 3. Problem Section */}
-      <section className="relative w-full py-24 lg:py-32 px-6 md:px-10 overflow-hidden" style={{
-        fontFamily: "'DM Sans', sans-serif",
-        backgroundColor: '#f8fafc',
-        backgroundImage: 'radial-gradient(circle at top left, rgba(200, 230, 255, 0.2) 0%, transparent 40%), radial-gradient(circle at bottom right, rgba(43, 189, 186, 0.05) 0%, transparent 40%)'
-      }}>
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="relative w-full py-24 lg:py-32 px-6 md:px-10 overflow-hidden" 
+        style={{
+          fontFamily: "'DM Sans', sans-serif",
+          backgroundColor: '#f8fafc',
+          backgroundImage: 'radial-gradient(circle at top left, rgba(200, 230, 255, 0.2) 0%, transparent 40%), radial-gradient(circle at bottom right, rgba(43, 189, 186, 0.05) 0%, transparent 40%)'
+        }}
+      >
         <div className="max-w-5xl mx-auto w-full relative z-10">
           {/* Header Section */}
-          <div className="text-center mb-16">
+          <motion.header 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
             <p className="text-xs font-bold tracking-[0.2em] text-[#2BBDBA] uppercase mb-4">
               VOCÊ SE IDENTIFICA?
             </p>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-[#0C3A6B] mb-6 leading-tight max-w-4xl mx-auto tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <h2 className="text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] font-bold text-[#0C3A6B] mb-6 leading-tight max-w-4xl mx-auto tracking-tight font-display">
               A ferida não cicatriza mesmo com curativo caseiro?
             </h2>
             <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
               Milhares de brasileiros convivem com <strong className="font-bold text-[#0C3A6B]">feridas crônicas</strong> sem saber que existe um <strong className="font-bold text-[#0C3A6B]">tratamento especializado</strong> que vai até a sua casa.
             </p>
-          </div>
+          </motion.header>
 
           {/* Grid Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <motion.section 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2
+                }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16"
+          >
             {/* Card 1 */}
-            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
-              border: '1px solid rgba(12, 58, 107, 0.08)',
-              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
-            }}>
-              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+            <motion.article 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+              }}
+              className="card-elegant rounded-2xl p-8 flex items-start gap-5 group"
+            >
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl group-hover:bg-[#2BBDBA]/20 transition-colors">
                 <Clock className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
                   A ferida está aberta há semanas ou meses sem melhora...
                 </h3>
                 <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
                   ...mesmo com pomada e curativo de farmácia.
                 </p>
               </div>
-            </article>
+            </motion.article>
 
             {/* Card 2 */}
-            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
-              border: '1px solid rgba(12, 58, 107, 0.08)',
-              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
-            }}>
-              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+            <motion.article 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+              }}
+              className="card-elegant rounded-2xl p-8 flex items-start gap-5 group"
+            >
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl group-hover:bg-[#2BBDBA]/20 transition-colors">
                 <Activity className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
                   Tem diabetes e percebeu uma ferida no pé ou perna...
                 </h3>
                 <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
                   ...que não demonstra sinais de cicatrização.
                 </p>
               </div>
-            </article>
+            </motion.article>
 
             {/* Card 3 */}
-            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
-              border: '1px solid rgba(12, 58, 107, 0.08)',
-              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
-            }}>
-              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+            <motion.article 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+              }}
+              className="card-elegant rounded-2xl p-8 flex items-start gap-5 group"
+            >
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl group-hover:bg-[#2BBDBA]/20 transition-colors">
                 <Home className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
                   Seu familiar está acamado e com escara de pressão...
                 </h3>
                 <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
                   ...e sair de casa para consultas é um desafio.
                 </p>
               </div>
-            </article>
+            </motion.article>
 
             {/* Card 4 */}
-            <article className="bg-white rounded-2xl p-8 flex items-start gap-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#2BBDBA]/30" style={{
-              border: '1px solid rgba(12, 58, 107, 0.08)',
-              boxShadow: '0 10px 25px -5px rgba(12, 58, 107, 0.05), 0 8px 10px -6px rgba(12, 58, 107, 0.05)'
-            }}>
-              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl">
+            <motion.article 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0 }
+              }}
+              className="card-elegant rounded-2xl p-8 flex items-start gap-5 group"
+            >
+              <div className="flex-shrink-0 bg-[#2BBDBA]/10 p-3 rounded-xl group-hover:bg-[#2BBDBA]/20 transition-colors">
                 <MapPinOff className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-lg leading-snug mb-2 line-clamp-2 min-h-[3rem]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
                   Já buscou UPAs e postos de saúde diversas vezes...
                 </h3>
                 <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
                   ...e ninguém resolveu definitivamente o problema.
                 </p>
               </div>
-            </article>
-          </div>
+            </motion.article>
+          </motion.section>
 
-          {/* Call to Action Banner */}
-          <div className="relative rounded-3xl overflow-hidden bg-[#0C3A6B] py-16 px-8 md:px-20 text-white flex flex-col md:flex-row items-center justify-between gap-12 mt-8 max-w-7xl mx-auto">
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#2BBDBA] via-transparent to-transparent"></div>
-            </div>
-            <div className="relative z-10 max-w-2xl text-center md:text-left">
-              <p className="text-xl md:text-2xl font-medium leading-relaxed mb-0" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-                Se você se identificou com qualquer uma dessas situações, o <span className="text-[#2BBDBA] font-bold">Doutor Feridas Home Care</span> foi criado para você. O especialista vai até a sua casa, com toda a tecnologia necessária para tratar o que outros não conseguiram.
+          {/* Footer Text Block */}
+          <motion.section 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="footer-bracket py-6 px-8 rounded-r-2xl">
+              <p className="text-slate-700 text-lg leading-relaxed">
+                Se você se identificou com essas situações, o <strong className="font-bold text-[#0C3A6B]">Doutor Feridas Home Care</strong> foi criado para você. O especialista vai até a sua casa com a tecnologia necessária para tratar o que outros não conseguiram.
               </p>
             </div>
-            <div className="relative z-10 shrink-0">
-              <button className="bg-[#2BBDBA] text-[#0C3A6B] font-bold py-5 px-10 rounded-2xl hover:bg-[#74f6f3] transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-black/20 flex items-center gap-3">
-                <MessageCircle className="w-6 h-6" />
-                Falar com Especialista
-              </button>
-            </div>
-          </div>
+          </motion.section>
         </div>
-      </section>
+      </motion.section>
 
       {/* 4. Solution/Method Section */}
-      <section className="relative px-6 md:px-10 py-32 lg:py-40 w-full overflow-hidden">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative px-6 md:px-12 py-20 overflow-hidden"
+      >
         {/* Background Video */}
         <video 
           autoPlay 
@@ -224,309 +329,655 @@ export default function App() {
         >
           <source src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/Generated%20Video%20March%2027%2C%202026%20-%203_55PM.mp4" type="video/mp4" />
         </video>
-        {/* Blue Overlay */}
-        <div className="absolute inset-0 bg-brand-900/85 z-0"></div>
+        {/* Dark Overlay for readability */}
+        <div className="absolute inset-0 bg-brand-900/80 z-0"></div>
+
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#2BBDBA]/5 rounded-full -mr-48 -mt-48 blur-3xl z-0"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0C3A6B]/20 rounded-full -ml-48 -mb-48 blur-3xl z-0"></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-white font-bold text-3xl md:text-4xl leading-tight mb-4">
-              Como <span className="text-accent-400 underline decoration-4 underline-offset-8">funciona?</span>
+          {/* Header Centralizado */}
+          <div className="text-center mb-24">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-[#2BBDBA]/10 text-[#2BBDBA] font-bold text-xs tracking-widest mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+              FLUXO DE ATENDIMENTO
+            </span>
+            <h2 className="text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] font-bold text-white mb-6 font-display">
+              Como funciona o <span className="text-[#2BBDBA]">atendimento domiciliar?</span>
             </h2>
-            <p className="text-brand-100 max-w-2xl mx-auto">
-              Nosso método em 3 passos para garantir a sua cicatrização com conforto e segurança.
+            <p className="text-white/80 max-w-2xl mx-auto text-lg leading-relaxed">
+              Um processo simplificado para garantir que você ou seu familiar receba o melhor cuidado sem precisar sair de casa.
             </p>
           </div>
-          
-          <div className="relative max-w-5xl mx-auto">
-            {/* Horizontal Connecting line (Desktop) */}
-            <div className="hidden lg:block absolute top-[138px] left-[16%] right-[16%] h-0.5 bg-brand-600 z-0"></div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative z-10">
-              {[
-                { 
-                  title: "Você entra em contato", 
-                  desc: "Preenche o formulário abaixo ou manda mensagem no WhatsApp. Nossa equipe retorna em até 1 hora para entender sua situação e agendar a visita.",
-                  icon: Phone,
-                  borderColor: "border-brand-600",
-                  bgColor: "bg-brand-500",
-                  textColor: "text-white",
-                  borderTopColor: "border-t-brand-600"
-                },
-                { 
-                  title: "O especialista vai até a sua casa", 
-                  desc: "Nosso enfermeiro especialista em feridas chega no dia e horário combinados com a mala completa, curativos avançados, equipamento de laserterapia e todos os insumos necessários. Você só abre a porta.",
-                  icon: MapPin,
-                  borderColor: "border-brand-500",
-                  bgColor: "bg-brand-400",
-                  textColor: "text-white",
-                  borderTopColor: "border-t-brand-500"
-                },
-                { 
-                  title: "Tratamento até a cicatrização completa", 
-                  desc: "Avaliação, protocolo personalizado e acompanhamento contínuo, do primeiro curativo domiciliar até a alta. Tudo no conforto da sua casa, sem você precisar sair.",
-                  icon: ShieldCheck,
-                  borderColor: "border-brand-400",
-                  bgColor: "bg-brand-300",
-                  textColor: "text-white",
-                  borderTopColor: "border-t-brand-400"
+          {/* Trilha Visual e Estágios */}
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.3
                 }
-              ].map((step, i) => (
-                <div key={i} className="relative flex flex-row lg:flex-col items-center lg:items-center gap-6 lg:gap-0 group">
-                  
-                  {/* Mobile Vertical Line */}
-                  {i !== 2 && (
-                    <div className="absolute left-[47px] top-[100px] bottom-[-48px] w-0.5 bg-brand-600 lg:hidden z-0"></div>
-                  )}
+              }
+            }}
+            className="relative mt-20 mb-20"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
 
-                  {/* Pin Container */}
-                  <div className="relative flex flex-col items-center shrink-0">
-                    {/* Outer Circle */}
-                    <div className={`w-24 h-24 rounded-full border-[6px] ${step.borderColor} bg-brand-800 flex items-center justify-center relative z-10 shadow-sm group-hover:scale-110 transition-transform duration-300`}>
-                      {/* Inner Circle */}
-                      <div className={`w-14 h-14 rounded-full ${step.bgColor} flex items-center justify-center shadow-inner`}>
-                        <step.icon className="w-6 h-6 text-white" strokeWidth={2} />
+              {/* Trilha com Carrinho (Desktop) */}
+              <div className="hidden md:block absolute top-12 z-0" style={{ left: '16.67%', right: '16.67%', height: '2px' }}>
+                {/* Calçada base */}
+                <div className="absolute inset-0 bg-white/10 rounded-full"></div>
+                {/* Linha de progresso */}
+                <motion.div 
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 2, delay: 0.5 }}
+                  className="absolute inset-0 bg-gradient-to-r from-[#2BBDBA] via-[#2BBDBA]/60 to-[#2BBDBA]/20 rounded-full origin-left"
+                ></motion.div>
+                {/* Carrinho animado */}
+                <div
+                  className="absolute w-9 h-9 rounded-full bg-[#0C3A6B] border-2 border-[#2BBDBA] flex items-center justify-center shadow-[0_0_18px_rgba(43,189,186,0.7)] pointer-events-none"
+                  style={{ top: '50%', animation: 'carDrive 6s ease-in-out infinite' }}
+                >
+                  <Car className="w-4 h-4 text-[#2BBDBA]" />
+                </div>
+              </div>
+
+              {/* Passo 1 */}
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  show: { opacity: 1, scale: 1 }
+                }}
+                className="relative flex flex-col items-center text-center group"
+              >
+                <div className="relative z-10 mb-8">
+                  <div className="w-24 h-24 rounded-2xl bg-[#0C3A6B] border border-[#2BBDBA]/30 flex items-center justify-center transition-all duration-300 group-hover:bg-[#2BBDBA] group-hover:border-[#2BBDBA] group-hover:shadow-[0_0_30px_rgba(43,189,186,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                    <MessageCircle className="w-10 h-10 text-[#2BBDBA] group-hover:text-[#0C3A6B] transition-colors" />
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#2BBDBA] text-[#0C3A6B] font-black flex items-center justify-center text-xs shadow-[0_0_12px_rgba(43,189,186,0.5)]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    01
+                  </div>
+                </div>
+                <h3 className="text-[1.618rem] font-bold text-white mb-3 font-display">Você entra em contato</h3>
+                <p className="text-white/70 leading-relaxed text-sm max-w-xs mx-auto">
+                  Preenche o formulário ou manda mensagem no WhatsApp. Retornamos em até 1 hora para agendar a visita.
+                </p>
+              </motion.div>
+
+              {/* Passo 2 */}
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  show: { opacity: 1, scale: 1 }
+                }}
+                className="relative flex flex-col items-center text-center group"
+              >
+                <div className="relative z-10 mb-8">
+                  <div className="w-24 h-24 rounded-2xl bg-[#0C3A6B] border border-[#2BBDBA]/30 flex items-center justify-center transition-all duration-300 group-hover:bg-[#2BBDBA] group-hover:border-[#2BBDBA] group-hover:shadow-[0_0_30px_rgba(43,189,186,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                    <Home className="w-10 h-10 text-[#2BBDBA] group-hover:text-[#0C3A6B] transition-colors" />
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#2BBDBA] text-[#0C3A6B] font-black flex items-center justify-center text-xs shadow-[0_0_12px_rgba(43,189,186,0.5)]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    02
+                  </div>
+                </div>
+                <h3 className="text-[1.618rem] font-bold text-white mb-3 font-display">O especialista vai até a sua casa</h3>
+                <p className="text-white/70 leading-relaxed text-sm max-w-xs mx-auto">
+                  Nosso enfermeiro chega no dia combinado com curativos avançados, laserterapia e todos os insumos. Você só abre a porta.
+                </p>
+              </motion.div>
+
+              {/* Passo 3 */}
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, scale: 0.8 },
+                  show: { opacity: 1, scale: 1 }
+                }}
+                className="relative flex flex-col items-center text-center group"
+              >
+                <div className="relative z-10 mb-8">
+                  <div className="w-24 h-24 rounded-2xl bg-[#0C3A6B] border border-[#2BBDBA]/30 flex items-center justify-center transition-all duration-300 group-hover:bg-[#2BBDBA] group-hover:border-[#2BBDBA] group-hover:shadow-[0_0_30px_rgba(43,189,186,0.4)] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                    <ShieldCheck className="w-10 h-10 text-[#2BBDBA] group-hover:text-[#0C3A6B] transition-colors" />
+                  </div>
+                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-[#2BBDBA] text-[#0C3A6B] font-black flex items-center justify-center text-xs shadow-[0_0_12px_rgba(43,189,186,0.5)]" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+                    03
+                  </div>
+                </div>
+                <h3 className="text-[1.618rem] font-bold text-white mb-3 font-display">Tratamento até a cicatrização completa</h3>
+                <p className="text-white/70 leading-relaxed text-sm max-w-xs mx-auto">
+                  Avaliação, protocolo personalizado e acompanhamento contínuo até a alta. Tudo no conforto da sua casa.
+                </p>
+              </motion.div>
+
+            </div>
+          </motion.div>
+
+          {/* CTA Complementar (Bento Card Style) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-16 bg-white/5 border border-white/10 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-8"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-[#2BBDBA]/20 flex items-center justify-center">
+                <Clock className="w-6 h-6 text-[#2BBDBA]" />
+              </div>
+              <div>
+                <p className="text-white font-bold" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Agendamento rápido e flexível</p>
+                <p className="text-white/70 text-sm">Atendimento inclusive em fins de semana e feriados.</p>
+              </div>
+            </div>
+            <button className="btn-whatsapp w-full md:w-auto px-8 py-4 font-bold rounded-xl flex items-center justify-center gap-2">
+              <Phone className="w-5 h-5" />
+              AGENDAR MINHA AVALIAÇÃO AGORA
+            </button>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* 4.5. Por que somos diferentes */}
+      <motion.section 
+        id="diferenciais" 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative py-20 px-6 overflow-hidden"
+      >
+        {/* Decorative Background Elements */}
+        <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 rounded-full bg-[#2BBDBA]/5 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-96 h-96 rounded-full bg-[#0C3A6B]/5 blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section Header */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16 space-y-4"
+          >
+            <span className="text-[#2BBDBA] font-bold text-xs tracking-[0.2em] uppercase" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>POR QUE SOMOS DIFERENTES</span>
+            <h2 className="text-[#0C3A6B] font-bold text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] max-w-3xl mx-auto leading-tight font-display">
+              Por que o Doutor Feridas Home Care é referência no Brasil
+            </h2>
+          </motion.div>
+
+          {/* Differentials Grid */}
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{
+              hidden: { opacity: 0 },
+              show: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {/* Card 1 */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+              className="group bg-white p-8 rounded-2xl card-shadow border border-slate-100 hover:border-[#2BBDBA]/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <ClipboardCheck className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+                Método Doutor Feridas
+              </h3>
+              <p className="text-slate-600 text-base leading-relaxed h-12">
+                Mais de 20 anos exclusivamente dedicados ao tratamento de feridas crônicas.
+              </p>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+              className="group bg-white p-8 rounded-2xl card-shadow border border-slate-100 hover:border-[#2BBDBA]/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Activity className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+                Laserterapia em domicílio
+              </h3>
+              <p className="text-slate-600 text-base leading-relaxed h-12">
+                Acesso a laserterapia para feridas crônicas diretamente na sua casa.
+              </p>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+              className="group bg-white p-8 rounded-2xl card-shadow border border-slate-100 hover:border-[#2BBDBA]/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Stethoscope className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+                Enfermeiro estomaterapeuta
+              </h3>
+              <p className="text-slate-600 text-base leading-relaxed h-12">
+                Enfermeiro especialista em feridas com suporte médico contínuo.
+              </p>
+            </motion.div>
+
+            {/* Card 4 */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+              className="group bg-white p-8 rounded-2xl card-shadow border border-slate-100 hover:border-[#2BBDBA]/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <BriefcaseMedical className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+                Mala completa inclusa
+              </h3>
+              <p className="text-slate-600 text-base leading-relaxed h-12">
+                Todos os curativos avançados e insumos especializados chegam com o profissional.
+              </p>
+            </motion.div>
+
+            {/* Card 5 */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+              className="group bg-white p-8 rounded-2xl card-shadow border border-slate-100 hover:border-[#2BBDBA]/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Award className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+                Acompanhamento até a alta
+              </h3>
+              <p className="text-slate-600 text-base leading-relaxed h-12">
+                Não é visita avulsa. É acompanhamento do diagnóstico até a cicatrização.
+              </p>
+            </motion.div>
+
+            {/* Card 6 */}
+            <motion.div 
+              variants={{ hidden: { opacity: 0, scale: 0.9 }, show: { opacity: 1, scale: 1 } }}
+              className="group bg-white p-8 rounded-2xl card-shadow border border-slate-100 hover:border-[#2BBDBA]/30 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                <Heart className="w-7 h-7 text-[#2BBDBA]" />
+              </div>
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+                Cuidado humanizado
+              </h3>
+              <p className="text-slate-600 text-base leading-relaxed h-12">
+                Tratamos a pessoa, não só a ferida. Abordagem integral e personalizada.
+              </p>
+            </motion.div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* 5. Services Carousel Section */}
+      <motion.section 
+        id="tratamentos" 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="py-20 px-6 md:px-12 lg:px-24 overflow-hidden relative"
+      >
+        {/* Abstract Background Element */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0C3A6B]/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#2BBDBA]/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Centralized Header Section */}
+          <div className="flex flex-col items-center text-center mb-16 max-w-4xl mx-auto">
+            <span className="text-[#2BBDBA] font-bold text-sm tracking-widest uppercase mb-4 block" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Especialidades Clínicas</span>
+            <h2 className="text-[#0C3A6B] font-bold text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] leading-tight mb-6 font-display">
+              Feridas que tratamos em casa
+            </h2>
+            <p className="text-slate-600 text-lg leading-relaxed mb-8">
+              Oferecemos tecnologia avançada e cuidados humanizados no conforto do seu lar, garantindo protocolos hospitalares com a segurança de uma equipe especializada.
+            </p>
+          </div>
+
+          {/* Carousel Container with Infinite Animation */}
+          <div className="relative overflow-hidden group/carousel">
+            <motion.div 
+              className="flex gap-6 pb-8"
+              animate={{
+                x: [0, -2256], // 6 cards * (350px + 24px gap) = 2244 roughly, let's adjust for exact set repeat
+              }}
+              transition={{
+                x: {
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  duration: 40,
+                  ease: "linear",
+                },
+              }}
+              style={{ width: "fit-content" }}
+              whileHover={{ animationPlayState: "paused" }}
+            >
+              {[...treatments, ...treatments].map((item, idx) => (
+                <div key={idx} className="min-w-[300px] md:min-w-[350px] flex-shrink-0">
+                  <div className="group h-full flex flex-col glass-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-slate-100/50">
+                    <div className="relative h-60 overflow-hidden">
+                      <div className="absolute inset-0 bg-[#0C3A6B]/10 group-hover:bg-[#0C3A6B]/0 transition-colors duration-500 z-10"></div>
+                      <img 
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700" 
+                        alt={item.title} 
+                        src={item.img} 
+                        referrerPolicy="no-referrer" 
+                      />
+                      <div className="absolute top-4 right-4 z-20">
+                        <span className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center text-[#2BBDBA] shadow-sm">
+                          {item.icon}
+                        </span>
                       </div>
                     </div>
-                    {/* Triangle (Pointer) */}
-                    <div className={`w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[14px] ${step.borderTopColor} -mt-1 relative z-10 group-hover:translate-y-1 transition-transform duration-300`} />
-                    
-                    {/* Space between pointer and dot (Desktop only) */}
-                    <div className="hidden lg:block h-6 w-px bg-transparent" />
-                    
-                    {/* Dot on the timeline (Desktop only) */}
-                    <div className={`hidden lg:block w-4 h-4 rounded-full ${step.bgColor} relative z-10 ring-4 ring-brand-700`} />
-                  </div>
-                  
-                  {/* Text */}
-                  <div className="lg:mt-6 lg:text-center flex-1 lg:flex-none">
-                    <h4 className={`font-bold text-xl mb-2 ${step.textColor}`}>{step.title}</h4>
-                    <p className="text-sm text-brand-100 leading-relaxed">{step.desc}</p>
+                    <div className="p-8 flex flex-col flex-grow bg-white">
+                      <h3 className="text-[#0C3A6B] font-bold text-xl md:text-[1.618rem] mb-3 leading-tight font-display">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm leading-relaxed mb-8">
+                        {item.desc}
+                      </p>
+                      <div className="mt-auto">
+                        <span className="h-1 w-16 bg-[#2BBDBA] block rounded-full"></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
+            
+            {/* Gradient Overlays for smooth entry/exit */}
+            <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
           </div>
-        </div>
-      </section>
 
-      {/* 4.5. Por que somos diferentes */}
-      <section id="diferenciais" className="px-6 md:px-10 py-24 lg:py-32 w-full bg-[#f8fafc]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div className="order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#2BBDBA]/10 text-[#2BBDBA] rounded-full text-sm font-bold mb-6">
-              <BadgeCheck className="w-4 h-4" />
-              EXCELÊNCIA CLÍNICA
-            </div>
-            <h2 className="font-extrabold text-[#0C3A6B] text-3xl md:text-4xl mb-6 tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-              Tecnologia avançada no conforto do seu lar
-            </h2>
-            <p className="text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "'DM Sans', sans-serif" }}>
-              Nossa equipe utiliza curativos biotecnológicos, laserterapia e terapia por pressão negativa para acelerar o processo de cicatrização, reduzindo a dor e o risco de infecções graves sem que você precise sair de casa.
-            </p>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
-                <ShieldCheck className="w-6 h-6 text-[#2BBDBA]" />
-                <span className="font-bold text-[#0C3A6B]" style={{ fontFamily: "'DM Sans', sans-serif" }}>Protocolos de Enfermagem Rigorosos</span>
-              </div>
-              <div className="flex items-center gap-4 p-4 rounded-xl bg-white border border-slate-100 shadow-sm">
-                <Microscope className="w-6 h-6 text-[#2BBDBA]" />
-                <span className="font-bold text-[#0C3A6B]" style={{ fontFamily: "'DM Sans', sans-serif" }}>Insumos de Alta Performance</span>
-              </div>
-            </div>
-          </div>
-          <div className="order-1 md:order-2 relative">
-            <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
-              <img alt="Clinical excellence at home" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6AAkqTgGJcuVRJA3F--orHhK31PSnKx2tGA8FG64LvphYuSeJ6ldfJkFu52czecANMQlQGxT1HW3Jso8_sJotgr5N-S304KYPjC2Quhc3g4HQ76b2BmBhK08WWKyVoi9FnqQ5AJ4-AyWY94RQHhI_Em2y_0X75_17AYThi8Lm0X8hHlIadLU81dYZ-l9kitOHUjO2TGYmQR7j3fc_KfIXc7IhbN35jGQXCoO-dycb2QWb3celxWp3W2zdKg8hZSJgQelPv7mQDd5u" referrerPolicy="no-referrer" />
-            </div>
-            {/* Float card */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl border border-slate-50 max-w-[200px]">
-              <div className="flex items-center gap-1 text-yellow-400 mb-2">
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-                <Star className="w-4 h-4 fill-current" />
-              </div>
-              <p className="text-sm font-bold text-[#0C3A6B] italic" style={{ fontFamily: "'DM Sans', sans-serif" }}>"Mudou a vida da minha mãe após meses de sofrimento."</p>
-            </div>
-          </div>
         </div>
-      </section>
-
-      {/* 5. Services Carousel Section */}
-      <section id="tratamentos" className="bg-slate-50 py-32 lg:py-40 w-full overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 mb-12">
-          <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-            <div>
-              <div className="text-brand-500 font-bold tracking-wider uppercase text-sm mb-2">Indicações</div>
-              <h2 className="text-slate-900 uppercase font-bold text-[5.5vw] sm:text-3xl md:text-4xl leading-tight max-w-xl whitespace-nowrap tracking-tight">
-                FERIDAS QUE TRATAMOS EM CASA
-              </h2>
-            </div>
-            <p className="text-slate-600 max-w-md md:text-right">
-              Evite o risco de infecções hospitalares. Levamos a estrutura de um consultório especializado até o conforto do seu lar.
-            </p>
-          </div>
-        </div>
-
-        {/* Infinite Marquee Carousel */}
-        <div className="flex group w-full">
-          <div className="flex gap-6 pr-6 animate-marquee min-w-max">
-            {servicesList.map((service, i) => (
-              <div key={`a-${i}`} className="w-[280px] md:w-[320px] h-[340px] rounded-[2rem] relative overflow-hidden group/card cursor-pointer shrink-0">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/card:scale-110"
-                  style={{ backgroundImage: `url(${service.img})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white font-bold text-xl leading-tight">{service.title}</h3>
-                  <div className="w-8 h-1 bg-brand-500 mt-3 rounded-full transition-all duration-300 group-hover/card:w-16" />
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="flex gap-6 pr-6 animate-marquee min-w-max" aria-hidden="true">
-            {servicesList.map((service, i) => (
-              <div key={`b-${i}`} className="w-[280px] md:w-[320px] h-[340px] rounded-[2rem] relative overflow-hidden group/card cursor-pointer shrink-0">
-                <div 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover/card:scale-110"
-                  style={{ backgroundImage: `url(${service.img})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/40 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white font-bold text-xl leading-tight">{service.title}</h3>
-                  <div className="w-8 h-1 bg-brand-500 mt-3 rounded-full transition-all duration-300 group-hover/card:w-16" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      </motion.section>
 
       {/* 6. Stats Section (New Design) */}
-      <section className="px-6 md:px-10 py-32 lg:py-40 bg-slate-900 w-full overflow-hidden">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column (Text & CTA) */}
-          <div className="flex flex-col items-start">
-            <div className="flex items-center gap-2 text-accent-400 font-bold tracking-wider uppercase text-sm mb-4">
-              Nossos Números <ChevronRight className="w-4 h-4" />
-            </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8">
-              A REFERÊNCIA EM <span className="text-accent-400">CICATRIZAÇÃO</span> NO BRASIL.
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative px-6 md:px-10 py-20 lg:py-32 w-full overflow-hidden" 
+        style={{
+          background: 'radial-gradient(circle at center, #0a2e4b 0%, #051a32 100%)',
+        }}
+      >
+        {/* Background grid pattern */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)',
+          backgroundSize: '30px 30px',
+        }} />
+        
+        {/* Glowing background */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-[#2BBDBA]/10 to-transparent rounded-full pointer-events-none" />
+        
+        <div className="max-w-6xl mx-auto relative z-10">
+          {/* Header */}
+          <header className="text-center mb-16">
+            <p className="text-[#2BBDBA] uppercase tracking-widest text-sm font-semibold mb-3">Nossos números</p>
+            <h2 className="text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] font-bold max-w-3xl mx-auto leading-tight text-white font-display">
+              A referência em cicatrização no Brasil.
             </h2>
-            <button className="bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] text-white rounded-full px-8 py-4 font-bold transition-all duration-300 active:scale-95 shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] border border-[#25D366]/50 flex items-center gap-2">
-              <Phone className="w-5 h-5" />
-              Agendar visita
-            </button>
-          </div>
+          </header>
 
-          {/* Right Column (Floating Circles) */}
-          <div className="relative h-[500px] w-full hidden md:block">
-            {/* Top Left Circle */}
-            <div className="absolute top-4 left-12 w-48 h-48 bg-slate-800 rounded-full shadow-[0_0_60px_rgba(45,212,191,0.6)] flex flex-col items-center justify-center p-6 z-10 hover:-translate-y-2 transition-transform duration-300 border border-accent-400/50">
-              <div className="text-4xl font-bold text-white mb-2">+20</div>
-              <div className="text-xs text-slate-300 text-center uppercase tracking-wider font-semibold">Anos de<br/>Experiência</div>
-            </div>
-
-            {/* Bottom Left Circle */}
-            <div className="absolute bottom-4 left-24 w-48 h-48 bg-slate-800 rounded-full shadow-[0_0_60px_rgba(45,212,191,0.6)] flex flex-col items-center justify-center p-6 z-10 hover:-translate-y-2 transition-transform duration-300 border border-accent-400/50">
-              <div className="text-4xl font-bold text-white mb-2">100%</div>
-              <div className="text-xs text-slate-300 text-center uppercase tracking-wider font-semibold">Atendimento<br/>Domiciliar</div>
-            </div>
-
-            {/* Big Right Circle */}
-            <div className="absolute top-1/2 -translate-y-1/2 right-4 w-72 h-72 bg-slate-800 rounded-full shadow-[0_0_80px_rgba(45,212,191,0.8)] flex flex-col items-center justify-center p-8 z-20 hover:-translate-y-2 transition-transform duration-300 border border-accent-400/60">
-              <div className="text-6xl font-bold text-white mb-3">+8M</div>
-              <div className="text-sm text-slate-300 text-center uppercase tracking-wider font-semibold">Casos tratados<br/>no Brasil</div>
-            </div>
-          </div>
-
-          {/* Mobile Stats (Fallback for small screens) */}
-          <div className="md:hidden grid grid-cols-1 gap-6">
-            <div className="bg-slate-800 rounded-3xl shadow-[0_0_60px_rgba(45,212,191,0.6)] p-8 flex flex-col items-center justify-center text-center border border-accent-400/50">
-              <div className="text-5xl font-bold text-white mb-2">+8M</div>
-              <div className="text-sm text-slate-300 uppercase tracking-wider font-semibold">Casos tratados no Brasil</div>
-            </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-slate-800 rounded-3xl shadow-[0_0_50px_rgba(45,212,191,0.5)] p-6 flex flex-col items-center justify-center text-center border border-accent-400/40">
-                <div className="text-3xl font-bold text-white mb-2">+20</div>
-                <div className="text-xs text-slate-300 uppercase tracking-wider font-semibold">Anos de Experiência</div>
+          {/* Stats Grid */}
+          <section className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 lg:gap-16 mb-20 w-full">
+            {/* Stat 1 */}
+            <article className="relative w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center" style={{
+              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
+              boxShadow: 'inset 0 0 20px rgba(43, 189, 186, 0.2)',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }}>
+              {/* LED Ring */}
+              <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-full led-ring pointer-events-none" />
+              {/* Hot spot rotativo */}
+              <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-full pointer-events-none" style={{ animation: 'spin 5s linear infinite' }}>
+                <div className="absolute top-0 left-1/2 w-7 h-7 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none" style={{
+                  background: 'radial-gradient(circle, white 0%, rgba(43,189,186,0.9) 35%, transparent 70%)',
+                  filter: 'blur(4px)',
+                  opacity: 0.95,
+                }} />
               </div>
-              <div className="bg-slate-800 rounded-3xl shadow-[0_0_50px_rgba(45,212,191,0.5)] p-6 flex flex-col items-center justify-center text-center border border-accent-400/40">
-                <div className="text-3xl font-bold text-white mb-2">100%</div>
-                <div className="text-xs text-slate-300 uppercase tracking-wider font-semibold">Atendimento Domiciliar</div>
+              <div className="z-20 flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(46, 196, 182, 0.3)',
+                  boxShadow: '0 0 10px rgba(46, 196, 182, 0.2)',
+                }}>
+                  <FileText className="w-5 h-5 text-[#2BBDBA]" />
+                </div>
+                <h3 className="text-4xl font-bold text-white mb-1">+20 ANOS</h3>
+                <p className="text-sm text-gray-300 uppercase tracking-wide text-center">DE EXPERIÊNCIA</p>
               </div>
-            </div>
+            </article>
+
+            {/* Stat 2 (Middle - larger) */}
+            <article className="relative w-[280px] h-[280px] rounded-full flex flex-col items-center justify-center" style={{
+              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
+              boxShadow: 'inset 0 0 20px rgba(43, 189, 186, 0.2)',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }}>
+              {/* LED Ring */}
+              <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-full led-ring pointer-events-none" />
+              {/* Hot spot rotativo (sentido inverso para variar) */}
+              <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-full pointer-events-none" style={{ animation: 'spin 4s linear infinite reverse' }}>
+                <div className="absolute top-0 left-1/2 w-7 h-7 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none" style={{
+                  background: 'radial-gradient(circle, white 0%, rgba(43,189,186,0.9) 35%, transparent 70%)',
+                  filter: 'blur(4px)',
+                  opacity: 0.95,
+                }} />
+              </div>
+              <div className="z-20 flex flex-col items-center mt-4">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(46, 196, 182, 0.3)',
+                  boxShadow: '0 0 10px rgba(46, 196, 182, 0.2)',
+                }}>
+                  <UserCheck className="w-5 h-5 text-[#2BBDBA]" />
+                </div>
+                <h3 className="text-4xl font-bold text-white mb-1">+8M CASOS</h3>
+                <p className="text-sm text-gray-300 uppercase tracking-wide text-center">TRATADOS NO BRASIL</p>
+              </div>
+            </article>
+
+            {/* Stat 3 */}
+            <article className="relative w-[250px] h-[250px] rounded-full flex flex-col items-center justify-center" style={{
+              background: 'radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%)',
+              boxShadow: 'inset 0 0 20px rgba(43, 189, 186, 0.2)',
+              border: '1px solid rgba(255,255,255,0.1)',
+            }}>
+              {/* LED Ring */}
+              <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-full led-ring pointer-events-none" />
+              {/* Hot spot rotativo */}
+              <div className="absolute -top-3 -left-3 -right-3 -bottom-3 rounded-full pointer-events-none" style={{ animation: 'spin 6s linear infinite' }}>
+                <div className="absolute top-0 left-1/2 w-7 h-7 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none" style={{
+                  background: 'radial-gradient(circle, white 0%, rgba(43,189,186,0.9) 35%, transparent 70%)',
+                  filter: 'blur(4px)',
+                  opacity: 0.95,
+                }} />
+              </div>
+              <div className="z-20 flex flex-col items-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mb-4" style={{
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  border: '1px solid rgba(46, 196, 182, 0.3)',
+                  boxShadow: '0 0 10px rgba(46, 196, 182, 0.2)',
+                }}>
+                  <Home className="w-5 h-5 text-[#2BBDBA]" />
+                </div>
+                <h3 className="text-4xl font-bold text-white mb-1">100%</h3>
+                <p className="text-sm text-gray-300 uppercase tracking-wide text-center px-4">ATENDIMENTO DOMICILIAR</p>
+              </div>
+            </article>
+          </section>
+
+          {/* CTA */}
+          <div className="mt-8 flex justify-center">
+            <a className="btn-whatsapp inline-flex items-center justify-center font-bold py-4 px-8 rounded-full" href="#">
+              <Phone className="w-5 h-5 mr-3" />
+              AGENDAR VISITA
+            </a>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6.5. Indicado para você */}
-      <section className="px-6 md:px-10 py-32 lg:py-40 bg-white w-full">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-10">
-            <div className="text-brand-600 font-bold tracking-wider uppercase text-sm mb-4">
-              Indicado para você
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight mb-6 tracking-tight">
-              O Doutor Feridas Home Care é para você se...
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="px-6 md:px-10 py-20 lg:py-24 bg-[#f2f7fa] w-full"
+      >
+        <div className="max-w-5xl mx-auto">
+          {/* Header */}
+          <header className="text-center mb-16 max-w-4xl mx-auto">
+            <h2 className="text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] font-bold text-[#0C3A6B] mb-4 tracking-tight font-display">
+              O Doutor Feridas Home Care é para você
             </h2>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
-              O <strong>curativo domiciliar especializado</strong> é indicado para qualquer pessoa que precise de cuidados contínuos com feridas sem se deslocar até uma clínica.
-            </p>
-          </div>
+          </header>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-            {[
-              <>Você tem uma <strong>ferida que não cicatriza</strong> há mais de 2 semanas mesmo com curativo convencional</>,
-              <>Você tem <strong>diabetes e percebeu uma ferida</strong> nos pés ou pernas</>,
-              <>Você tem <strong>dificuldade de locomoção</strong> ou mobilidade reduzida</>,
-              <>Você cuida de um <strong>idoso ou familiar acamado</strong> com ferida em casa</>,
-              <>Você quer evitar <strong>idas frequentes ao hospital</strong> ou clínica para curativos</>,
-              <>Você já fez <strong>tratamento em outros lugares</strong> e não teve resultado satisfatório</>
-            ].map((text, i) => (
-              <div key={i} className="bg-white border border-slate-200 rounded-2xl p-6 flex items-start gap-4 shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-2.5 h-2.5 rounded-full bg-brand-500 mt-2 shrink-0"></div>
-                <p className="text-slate-700 leading-relaxed text-base">{text}</p>
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {/* Card 1 */}
+            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
+              <div className="text-[#0f315a] mb-6 text-5xl">
+                <Plus className="w-12 h-12" />
               </div>
-            ))}
+              <p className="text-sm md:text-base text-gray-800 leading-snug">
+                Você tem uma ferida que não cicatriza há mais de 2 semanas mesmo com curativo convencional.
+              </p>
+            </article>
+
+            {/* Card 2 */}
+            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
+              <div className="text-[#0f315a] mb-6 text-5xl">
+                <HeartPulse className="w-12 h-12" />
+              </div>
+              <p className="text-sm md:text-base text-gray-800 leading-snug">
+                Você tem diabetes e percebeu uma ferida nos pés ou pernas.
+              </p>
+            </article>
+
+            {/* Card 3 */}
+            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
+              <div className="text-[#0f315a] mb-6 text-5xl">
+                <Clock className="w-12 h-12" />
+              </div>
+              <p className="text-sm md:text-base text-gray-800 leading-snug">
+                Você tem dificuldade de locomoção ou mobilidade reduzida.
+              </p>
+            </article>
+
+            {/* Card 4 */}
+            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
+              <div className="text-[#0f315a] mb-6 text-5xl">
+                <UserCheck className="w-12 h-12" />
+              </div>
+              <p className="text-sm md:text-base text-gray-800 leading-snug">
+                Você cuida de um idoso ou familiar acamado com ferida em casa.
+              </p>
+            </article>
+
+            {/* Card 5 */}
+            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
+              <div className="text-[#0f315a] mb-6 text-5xl">
+                <BriefcaseMedical className="w-12 h-12" />
+              </div>
+              <p className="text-sm md:text-base text-gray-800 leading-snug">
+                Você quer evitar idas frequentes ao hospital ou clínica para curativos.
+              </p>
+            </article>
+
+            {/* Card 6 */}
+            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
+              <div className="text-[#0f315a] mb-6 text-5xl">
+                <AlertCircle className="w-12 h-12" />
+              </div>
+              <p className="text-sm md:text-base text-gray-800 leading-snug">
+                Você já fez tratamento em outros lugares e não teve resultado satisfatório.
+              </p>
+            </article>
           </div>
 
-          <div className="bg-brand-50 border-l-4 border-brand-500 rounded-r-2xl p-6 md:p-8 mb-8">
-            <p className="text-slate-800 text-lg leading-relaxed">
-              Se você se identificou, seu próximo passo é simples: entre em contato e a nossa equipe cuida do resto. <strong>A primeira avaliação é gratuita.</strong>
-            </p>
-          </div>
+          {/* CTA Section */}
+          <div className="flex flex-col items-center gap-8">
+            {/* Highlight Box */}
+            <div className="bg-gradient-to-r from-[#85d0c6] to-[#6ec0b5] rounded-xl p-6 sm:p-8 text-center text-gray-900 w-full shadow-md">
+              <p className="text-base sm:text-lg mb-1">
+                Se você se identificou, seu próximo passo é simples:
+              </p>
+              <p className="text-base sm:text-lg mb-2">
+                entre em contato e a nossa equipe cuida do resto.
+              </p>
+              <p className="text-lg sm:text-xl font-bold">
+                A primeira avaliação é gratuita.
+              </p>
+            </div>
 
-          <button className="w-full bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] text-white font-bold text-lg py-5 rounded-2xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(37,211,102,0.4)] hover:shadow-[0_0_30px_rgba(37,211,102,0.6)] border border-[#25D366]/50">
-            <Phone className="w-6 h-6" />
-            Agendar visita
-          </button>
+            {/* Action Button */}
+            <a className="btn-whatsapp inline-flex items-center justify-center px-8 py-4 font-bold rounded-full text-lg" href="#">
+              <svg className="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.06 6.988 2.943a9.894 9.894 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Agendar visita
+            </a>
+          </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6.6. CTA Banner */}
-      <section className="px-6 md:px-10 py-32 lg:py-40 bg-brand-700 w-full text-center">
+      <motion.section 
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="px-6 md:px-10 py-32 lg:py-40 bg-brand-700 w-full text-center"
+      >
         <div className="max-w-4xl mx-auto">
           <div className="text-accent-200 font-bold tracking-wider uppercase text-sm mb-4">
             A GENTE VAI ATÉ VOCÊ
           </div>
-          <h2 className="text-[4.5vw] sm:text-2xl md:text-4xl lg:text-[2.8rem] font-bold text-white leading-tight mb-6 tracking-tight font-display whitespace-nowrap">
+          <h2 className="text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] font-bold text-white leading-tight mb-6 tracking-tight font-display">
             Não espera a ferida piorar para buscar ajuda
           </h2>
           <p className="text-white/90 text-lg md:text-xl leading-relaxed mb-10 max-w-3xl mx-auto">
             Feridas crônicas pioram com o tempo. O <strong>tratamento precoce domiciliar</strong> muda completamente o prognóstico, e é mais simples do que você imagina. Nossa equipe está a uma mensagem de distância.
           </p>
-          <button className="w-full md:w-auto bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:from-[#128C7E] hover:to-[#075E54] text-white font-bold text-lg py-4 px-8 rounded-2xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-3 mx-auto shadow-[0_0_30px_rgba(37,211,102,0.5)] hover:shadow-[0_0_40px_rgba(37,211,102,0.7)] border border-[#25D366]/50">
+          <button className="btn-whatsapp w-full md:w-auto font-bold text-lg py-4 px-8 rounded-2xl flex items-center justify-center gap-3 mx-auto">
             <Phone className="w-5 h-5" />
-            Quero agendar agora
+            Agendar visita agora
           </button>
         </div>
-      </section>
+      </motion.section>
 
       {/* 6.7. FAQ Section */}
-      <AccordionComponent />
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <AccordionComponent />
+      </motion.div>
 
       {/* 7. Floating WhatsApp Button */}
       <a 
@@ -544,7 +995,13 @@ export default function App() {
       </a>
 
       {/* 8. Footer */}
-      <Footer
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <Footer
         brandName="Doutor Feridas"
         brandDescription="A referência em cicatrização no Brasil. Curativo domiciliar especializado com tecnologia laser e curativos de alta performance."
         socialLinks={[
@@ -572,8 +1029,9 @@ export default function App() {
           { label: "Dúvidas (FAQ)", href: "#" },
           { label: "Contato", href: "#" },
         ]}
-        brandIcon={<img src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logo_so_logo_quadrada_fundo_branco.png" alt="Doutor Feridas" className="w-8 sm:w-10 md:w-14 h-8 sm:h-10 md:h-14 object-contain invert grayscale brightness-[4] mix-blend-screen" referrerPolicy="no-referrer" />}
+        brandIcon={<img src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logo_doutor_feridas_home_care.png" alt="Doutor Feridas" className="w-12 sm:w-16 md:w-24 h-auto object-contain invert grayscale brightness-[4] mix-blend-screen" referrerPolicy="no-referrer" />}
       />
+      </motion.div>
 
       {/* Add custom styles for hiding scrollbar in carousel */}
       <style dangerouslySetInnerHTML={{__html: `
