@@ -52,7 +52,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 relative pb-24">
+    <div className="min-h-screen bg-white font-sans text-slate-900 relative">
       {/* 1. Navigation Bar (Floating) */}
       <nav className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] md:w-[95%] max-w-5xl bg-white/95 backdrop-blur-md rounded-full px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center z-50 shadow-sm border border-slate-200/50">
         <div className="flex items-center gap-2">
@@ -126,7 +126,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* 2. Hero Section */}
-      <section id="inicio" className="h-[calc(90vh+100px)] min-h-[700px] rounded-[2rem] mx-2 md:mx-4 mt-4 relative overflow-hidden flex flex-col justify-center items-center pb-16 px-6 md:px-10 shadow-sm group">
+      <section id="inicio" className="min-h-[100dvh] rounded-[2rem] mx-2 md:mx-4 mt-4 relative overflow-hidden flex flex-col justify-center items-center pb-16 px-6 md:px-10 shadow-sm group">
         {/* Background Image with subtle zoom effect */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] group-hover:scale-110"
@@ -221,7 +221,7 @@ export default function App() {
           backgroundImage: 'radial-gradient(circle at top left, rgba(200, 230, 255, 0.2) 0%, transparent 40%), radial-gradient(circle at bottom right, rgba(43, 189, 186, 0.05) 0%, transparent 40%)'
         }}
       >
-        <div className="max-w-5xl mx-auto w-full relative z-10">
+        <div className="max-w-6xl mx-auto w-full relative z-10">
           {/* Header Section */}
           <motion.header 
             initial={{ opacity: 0, y: 30 }}
@@ -269,10 +269,10 @@ export default function App() {
                 <Clock className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 font-display" style={{ textWrap: 'balance' }}>
                   A ferida está aberta há semanas ou meses sem melhora...
                 </h3>
-                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                <p className="text-slate-500 text-[15px] font-medium">
                   ...mesmo com pomada e curativo de farmácia.
                 </p>
               </div>
@@ -290,10 +290,10 @@ export default function App() {
                 <Activity className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 font-display" style={{ textWrap: 'balance' }}>
                   Tem diabetes e percebeu uma ferida no pé ou perna...
                 </h3>
-                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                <p className="text-slate-500 text-[15px] font-medium">
                   ...que não demonstra sinais de cicatrização.
                 </p>
               </div>
@@ -311,10 +311,10 @@ export default function App() {
                 <Home className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 font-display" style={{ textWrap: 'balance' }}>
                   Seu familiar está acamado e com escara de pressão...
                 </h3>
-                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                <p className="text-slate-500 text-[15px] font-medium">
                   ...e sair de casa para consultas é um desafio.
                 </p>
               </div>
@@ -332,10 +332,10 @@ export default function App() {
                 <MapPinOff className="w-7 h-7 text-[#2BBDBA]" />
               </div>
               <div className="flex-1">
-                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 line-clamp-2 min-h-[3rem] font-display">
+                <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-2 font-display" style={{ textWrap: 'balance' }}>
                   Já buscou UPAs e postos de saúde diversas vezes...
                 </h3>
-                <p className="text-slate-500 text-[15px] font-medium line-clamp-1 min-h-[1.5rem]">
+                <p className="text-slate-500 text-[15px] font-medium">
                   ...e ninguém resolveu definitivamente o problema.
                 </p>
               </div>
@@ -384,7 +384,7 @@ export default function App() {
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#2BBDBA]/5 rounded-full -mr-48 -mt-48 blur-3xl z-0"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#0C3A6B]/20 rounded-full -ml-48 -mb-48 blur-3xl z-0"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Header Centralizado */}
           <div className="text-center mb-24">
             <span className="inline-block px-4 py-1.5 rounded-full bg-[#2BBDBA]/10 text-[#2BBDBA] font-bold text-xs tracking-widest mb-4" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -544,7 +544,7 @@ export default function App() {
         <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/3 w-96 h-96 rounded-full bg-[#2BBDBA]/5 blur-3xl"></div>
         <div className="absolute bottom-0 left-0 translate-y-1/2 -translate-x-1/3 w-96 h-96 rounded-full bg-[#0C3A6B]/5 blur-3xl"></div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Section Header */}
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -583,10 +583,10 @@ export default function App() {
               <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <ClipboardCheck className="w-7 h-7 text-[#2BBDBA]" />
               </div>
-              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 font-display">
                 Método Doutor Feridas
               </h3>
-              <p className="text-slate-600 text-base leading-relaxed h-12">
+              <p className="text-slate-600 text-base leading-relaxed">
                 Mais de 20 anos exclusivamente dedicados ao tratamento de feridas crônicas.
               </p>
             </motion.div>
@@ -599,10 +599,10 @@ export default function App() {
               <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Activity className="w-7 h-7 text-[#2BBDBA]" />
               </div>
-              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 font-display">
                 Laserterapia em domicílio
               </h3>
-              <p className="text-slate-600 text-base leading-relaxed h-12">
+              <p className="text-slate-600 text-base leading-relaxed">
                 Acesso a laserterapia para feridas crônicas diretamente na sua casa.
               </p>
             </motion.div>
@@ -615,10 +615,10 @@ export default function App() {
               <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Stethoscope className="w-7 h-7 text-[#2BBDBA]" />
               </div>
-              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 font-display">
                 Enfermeiro estomaterapeuta
               </h3>
-              <p className="text-slate-600 text-base leading-relaxed h-12">
+              <p className="text-slate-600 text-base leading-relaxed">
                 Enfermeiro especialista em feridas com suporte médico contínuo.
               </p>
             </motion.div>
@@ -631,10 +631,10 @@ export default function App() {
               <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <BriefcaseMedical className="w-7 h-7 text-[#2BBDBA]" />
               </div>
-              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 font-display">
                 Mala completa inclusa
               </h3>
-              <p className="text-slate-600 text-base leading-relaxed h-12">
+              <p className="text-slate-600 text-base leading-relaxed">
                 Todos os curativos avançados e insumos especializados chegam com o profissional.
               </p>
             </motion.div>
@@ -647,10 +647,10 @@ export default function App() {
               <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Award className="w-7 h-7 text-[#2BBDBA]" />
               </div>
-              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 font-display">
                 Acompanhamento até a alta
               </h3>
-              <p className="text-slate-600 text-base leading-relaxed h-12">
+              <p className="text-slate-600 text-base leading-relaxed">
                 Não é visita avulsa. É acompanhamento do diagnóstico até a cicatrização.
               </p>
             </motion.div>
@@ -663,10 +663,10 @@ export default function App() {
               <div className="w-14 h-14 rounded-full bg-[#2BBDBA]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                 <Heart className="w-7 h-7 text-[#2BBDBA]" />
               </div>
-              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 h-14 flex items-center font-display">
+              <h3 className="font-bold text-[#0C3A6B] text-xl leading-snug mb-3 font-display">
                 Cuidado humanizado
               </h3>
-              <p className="text-slate-600 text-base leading-relaxed h-12">
+              <p className="text-slate-600 text-base leading-relaxed">
                 Tratamos a pessoa, não só a ferida. Abordagem integral e personalizada.
               </p>
             </motion.div>
@@ -687,7 +687,7 @@ export default function App() {
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#0C3A6B]/5 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#2BBDBA]/10 rounded-full blur-3xl pointer-events-none"></div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10">
           {/* Centralized Header Section */}
           <div className="flex flex-col items-center text-center mb-16 max-w-4xl mx-auto">
             <span className="text-[#2BBDBA] font-bold text-sm tracking-widest uppercase mb-4 block" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>Especialidades Clínicas</span>
@@ -898,7 +898,7 @@ export default function App() {
         transition={{ duration: 1 }}
         className="px-6 md:px-10 py-20 lg:py-24 bg-[#f2f7fa] w-full"
       >
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Header */}
           <header className="text-center mb-16 max-w-4xl mx-auto">
             <h2 className="text-[1.618rem] md:text-[2.25rem] lg:text-[2.618rem] font-bold text-[#0C3A6B] mb-4 tracking-tight font-display">
@@ -909,62 +909,68 @@ export default function App() {
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {/* Card 1 */}
-            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
-              <div className="text-[#0f315a] mb-6 text-5xl">
-                <Plus className="w-12 h-12" />
+            <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start text-left transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '4px solid #2BBDBA' }}>
+              <div className="bg-[#2BBDBA]/10 rounded-lg p-3 mb-4">
+                <Plus className="w-7 h-7 text-[#0C3A6B]" />
               </div>
-              <p className="text-sm md:text-base text-gray-800 leading-snug">
-                Você tem uma ferida que não cicatriza há mais de 2 semanas mesmo com curativo convencional.
+              <h3 className="font-bold text-[#0C3A6B] text-base mb-2 font-display">Ferida que não cicatriza</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Ferida aberta há mais de 2 semanas sem melhora, mesmo com curativo convencional.
               </p>
             </article>
 
             {/* Card 2 */}
-            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
-              <div className="text-[#0f315a] mb-6 text-5xl">
-                <HeartPulse className="w-12 h-12" />
+            <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start text-left transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '4px solid #2BBDBA' }}>
+              <div className="bg-[#2BBDBA]/10 rounded-lg p-3 mb-4">
+                <HeartPulse className="w-7 h-7 text-[#0C3A6B]" />
               </div>
-              <p className="text-sm md:text-base text-gray-800 leading-snug">
-                Você tem diabetes e percebeu uma ferida nos pés ou pernas.
+              <h3 className="font-bold text-[#0C3A6B] text-base mb-2 font-display">Pé diabético</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Diabetes e uma ferida nos pés ou pernas que não demonstra sinais de cicatrização.
               </p>
             </article>
 
             {/* Card 3 */}
-            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
-              <div className="text-[#0f315a] mb-6 text-5xl">
-                <Clock className="w-12 h-12" />
+            <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start text-left transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '4px solid #2BBDBA' }}>
+              <div className="bg-[#2BBDBA]/10 rounded-lg p-3 mb-4">
+                <Clock className="w-7 h-7 text-[#0C3A6B]" />
               </div>
-              <p className="text-sm md:text-base text-gray-800 leading-snug">
-                Você tem dificuldade de locomoção ou mobilidade reduzida.
+              <h3 className="font-bold text-[#0C3A6B] text-base mb-2 font-display">Mobilidade reduzida</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Dificuldade de locomoção que torna deslocamentos ao hospital um desafio.
               </p>
             </article>
 
             {/* Card 4 */}
-            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
-              <div className="text-[#0f315a] mb-6 text-5xl">
-                <UserCheck className="w-12 h-12" />
+            <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start text-left transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '4px solid #2BBDBA' }}>
+              <div className="bg-[#2BBDBA]/10 rounded-lg p-3 mb-4">
+                <UserCheck className="w-7 h-7 text-[#0C3A6B]" />
               </div>
-              <p className="text-sm md:text-base text-gray-800 leading-snug">
-                Você cuida de um idoso ou familiar acamado com ferida em casa.
+              <h3 className="font-bold text-[#0C3A6B] text-base mb-2 font-display">Cuidador familiar</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Cuida de idoso ou familiar acamado com ferida em casa e precisa de suporte especializado.
               </p>
             </article>
 
             {/* Card 5 */}
-            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
-              <div className="text-[#0f315a] mb-6 text-5xl">
-                <BriefcaseMedical className="w-12 h-12" />
+            <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start text-left transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '4px solid #2BBDBA' }}>
+              <div className="bg-[#2BBDBA]/10 rounded-lg p-3 mb-4">
+                <BriefcaseMedical className="w-7 h-7 text-[#0C3A6B]" />
               </div>
-              <p className="text-sm md:text-base text-gray-800 leading-snug">
-                Você quer evitar idas frequentes ao hospital ou clínica para curativos.
+              <h3 className="font-bold text-[#0C3A6B] text-base mb-2 font-display">Evitar hospitalizações</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Quer evitar idas frequentes ao hospital ou clínica para curativos periódicos.
               </p>
             </article>
 
             {/* Card 6 */}
-            <article className="bg-white rounded-xl shadow-md p-8 flex flex-col items-center text-center transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '6px solid #85d0c6' }}>
-              <div className="text-[#0f315a] mb-6 text-5xl">
-                <AlertCircle className="w-12 h-12" />
+            <article className="bg-white rounded-xl shadow-md p-6 flex flex-col items-start text-left transition-transform hover:-translate-y-1 duration-300" style={{ borderTop: '4px solid #2BBDBA' }}>
+              <div className="bg-[#2BBDBA]/10 rounded-lg p-3 mb-4">
+                <AlertCircle className="w-7 h-7 text-[#0C3A6B]" />
               </div>
-              <p className="text-sm md:text-base text-gray-800 leading-snug">
-                Você já fez tratamento em outros lugares e não teve resultado satisfatório.
+              <h3 className="font-bold text-[#0C3A6B] text-base mb-2 font-display">Sem resultado anterior</h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Já fez tratamento em outros lugares e não obteve resultado satisfatório.
               </p>
             </article>
           </div>
@@ -1001,7 +1007,7 @@ export default function App() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="px-6 md:px-10 py-32 lg:py-40 bg-brand-700 w-full text-center"
+        className="px-6 md:px-10 py-20 lg:py-28 bg-brand-700 w-full text-center"
       >
         <div className="max-w-4xl mx-auto">
           <div className="text-accent-200 font-bold tracking-wider uppercase text-sm mb-4">
