@@ -50,40 +50,53 @@ const treatments = [
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white font-sans text-slate-900 relative">
-      {/* 1. Navigation Bar (Floating) */}
-      <nav className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] md:w-[95%] max-w-5xl bg-white/95 backdrop-blur-md rounded-full px-4 md:px-6 py-2.5 md:py-3 flex justify-between items-center z-50 shadow-sm border border-slate-200/50">
-        <div className="flex items-center gap-2">
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-1.5 text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
-            aria-label="Menu"
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-          <img 
-            src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logo_doutor_feridas_home_care.png" 
-            alt="Doutor Feridas" 
-            className="h-8 md:h-12 object-contain"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-        
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700 uppercase tracking-tight">
-          <a href="#inicio" className="hover:text-brand-500 transition-colors">Início</a>
-          <a href="#tratamentos" className="hover:text-brand-500 transition-colors">Tratamentos</a>
-          <a href="#diferenciais" className="hover:text-brand-500 transition-colors">Diferenciais</a>
-          <a href="#faq" className="hover:text-brand-500 transition-colors">FAQ</a>
-        </div>
+      {/* 1. Navigation Bar (Fixed top width fade on scroll) */}
+      <nav className={`fixed top-0 left-0 w-full px-6 py-4 flex justify-between items-center z-50 transition-all duration-500 ${
+        scrolled ? 'bg-white/80 backdrop-blur-xl shadow-sm' : 'bg-white/100'
+      }`}>
+        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
+          <div className="flex items-center gap-2">
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-1.5 text-slate-700 hover:bg-slate-100 rounded-full transition-colors"
+              aria-label="Menu"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+            <img 
+              src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/landing_pages/doutorFeridas/logo_doutor_feridas_home_care.png" 
+              alt="Doutor Feridas" 
+              className="h-8 md:h-12 object-contain"
+              referrerPolicy="no-referrer"
+            />
+          </div>
+          
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8 text-sm font-bold text-slate-700 uppercase tracking-tight">
+            <a href="#inicio" className="hover:text-brand-500 transition-colors">Início</a>
+            <a href="#tratamentos" className="hover:text-brand-500 transition-colors">Tratamentos</a>
+            <a href="#diferenciais" className="hover:text-brand-500 transition-colors">Diferenciais</a>
+            <a href="#faq" className="hover:text-brand-500 transition-colors">FAQ</a>
+          </div>
 
-        <button className="btn-whatsapp rounded-full px-4 md:px-6 py-2 md:py-2.5 flex items-center gap-2 font-bold text-xs md:text-sm">
-          <Phone className="w-3.5 h-3.5 md:w-4 h-4" />
-          <span className="hidden sm:inline">Agendar visita</span>
-          <span className="sm:hidden">Agendar</span>
-        </button>
+          <button className="btn-whatsapp rounded-xl px-5 md:px-6 py-2 md:py-3 flex items-center gap-2 font-bold text-xs md:text-sm">
+            <Phone className="w-3.5 h-3.5 md:w-4 h-4" />
+            <span className="hidden sm:inline">Agendar visita</span>
+            <span className="sm:hidden">Agendar</span>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu Overlay */}
@@ -125,8 +138,8 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* 2. Hero Section */}
-      <section id="inicio" className="min-h-[100dvh] rounded-[2rem] mx-2 md:mx-4 mt-4 relative overflow-hidden flex flex-col justify-center items-center pb-16 px-6 md:px-10 shadow-sm group">
+      {/* 2. Hero Section (Infinite Background & Split Layout) */}
+      <section id="inicio" className="min-h-[100dvh] w-full relative overflow-hidden flex flex-col justify-center items-center pt-24 pb-16 px-6 md:px-10 shadow-sm group">
         {/* Background Image with subtle zoom effect */}
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] group-hover:scale-110"
@@ -134,73 +147,92 @@ export default function App() {
         />
         
         {/* Advanced Vignette and Dynamic Overlay */}
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-brand-900/40 via-brand-900/60 to-brand-900/90" />
-        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(12,58,107,0.4)_100%)]" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#0C3A6B]/90 via-[#0C3A6B]/80 to-[#0C3A6B]/60" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-transparent to-[#0C3A6B]/90" />
 
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center mt-16"
+          className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-12"
         >
-          {/* Main Headline */}
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-[2.618rem] md:text-[3.5rem] lg:text-[4.236rem] font-bold text-white leading-[1.1] mb-8 font-display drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] tracking-tight"
-          >
-            Tratamento especializado de <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 via-accent-400 to-accent-300 animate-pulse-slow">
-              feridas crônicas
-            </span> <br/>
-            na sua casa.
-          </motion.h1>
+          {/* Left Side Container */}
+          <div className="flex flex-col items-start text-left">
+            {/* Main Headline */}
+            <motion.h1 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2 }}
+              className="text-[2.618rem] md:text-[3.5rem] lg:text-[4.236rem] font-bold text-white leading-[1.1] mb-6 font-display drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)] tracking-tight"
+            >
+              Tratamento especializado de <br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-300 via-accent-400 to-accent-300 animate-pulse-slow">
+                feridas crônicas
+              </span> <br/>
+              na sua casa.
+            </motion.h1>
 
-          {/* Subheadline with Glassmorphism Layer */}
+            {/* Subheadline Text */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="relative py-4 mb-8"
+            >
+              <p className="relative z-10 max-w-xl text-white/95 text-base md:text-xl font-medium leading-relaxed drop-shadow-sm">
+                Sem sair de casa. Sem fila. Sem hospital. Nosso <strong>enfermeiro especialista</strong> vai até você com <strong>tecnologia laser</strong>, curativos avançados e o protocolo validado pelo Doutor Feridas.
+              </p>
+            </motion.div>
+
+            {/* Premium Pills Section */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="flex flex-wrap justify-start gap-4 mt-2"
+            >
+              {[
+                { text: 'Curativo domiciliar', icon: <HomeIcon className="w-5 h-5 text-accent-400" /> },
+                { text: 'Laserterapia', icon: <Zap className="w-5 h-5 text-accent-400" /> },
+                { text: 'Avaliação gratuita', icon: <Sparkles className="w-5 h-5 text-accent-400" /> }
+              ].map((pill, i) => (
+                <div key={i} className="bg-white/10 backdrop-blur-xl text-white rounded-2xl px-5 py-2.5 text-sm md:text-base border border-white/20 flex items-center gap-3 font-semibold shadow-lg hover:bg-white/20 hover:border-white/40 transition-all cursor-default">
+                  {pill.icon}
+                  {pill.text}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Side Glass Form */}
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="relative px-6 py-4 mb-12"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="w-full flex justify-center lg:justify-end"
           >
-            <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-2xl -rotate-1 hidden md:block" />
-            <p className="relative z-10 max-w-2xl text-white/95 text-base md:text-xl font-medium leading-relaxed drop-shadow-sm">
-              Sem sair de casa. Sem fila. Sem hospital. Nosso <strong>enfermeiro especialista</strong> vai até você com <strong>tecnologia laser</strong>, curativos avançados e o protocolo validado pelo Doutor Feridas.
-            </p>
-          </motion.div>
-
-          {/* CTA Button with added impact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="w-full flex flex-col items-center"
-          >
-            <button className="btn-whatsapp rounded-full px-8 md:px-12 py-3.5 md:py-4.5 flex items-center justify-center gap-3 md:gap-4 font-bold text-lg md:text-xl w-full sm:w-auto min-w-[300px] md:min-w-[400px] mb-12 group/btn">
-              <Phone className="w-5 h-5 md:w-6 md:h-6 relative z-10 animate-shake" />
-              <span className="relative z-10 tracking-wide">Agendar visita agora</span>
-              <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
-            </button>
-          </motion.div>
-
-          {/* Premium Pills Section */}
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            className="flex flex-wrap justify-center gap-4 mt-4"
-          >
-            {[
-              { text: 'Curativo domiciliar', icon: <HomeIcon className="w-5 h-5 text-accent-400" /> },
-              { text: 'Laserterapia', icon: <Zap className="w-5 h-5 text-accent-400" /> },
-              { text: 'Avaliação gratuita', icon: <Sparkles className="w-5 h-5 text-accent-400" /> }
-            ].map((pill, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-xl text-white rounded-2xl px-6 py-3.5 text-base border border-white/20 flex items-center gap-3 font-semibold shadow-lg hover:bg-white/20 hover:border-white/40 transition-all cursor-default">
-                {pill.icon}
-                {pill.text}
-              </div>
-            ))}
+            <div className="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 shadow-2xl w-full max-w-md">
+              <h3 className="text-2xl font-bold text-white mb-2 font-display">Agende sua avaliação</h3>
+              <p className="text-white/80 mb-6 text-sm">Preencha os dados e entraremos em contato rapidamente.</p>
+              
+              <form className="flex flex-col gap-4">
+                <div>
+                  <label className="block text-white/90 text-sm font-medium mb-1" htmlFor="name">Nome completo</label>
+                  <input id="name" type="text" className="w-full bg-white/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 outline-none focus:border-accent-400 focus:bg-white/30 transition-colors" placeholder="Digite seu nome" required />
+                </div>
+                <div>
+                  <label className="block text-white/90 text-sm font-medium mb-1" htmlFor="phone">Telefone / WhatsApp</label>
+                  <input id="phone" type="tel" className="w-full bg-white/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/50 outline-none focus:border-accent-400 focus:bg-white/30 transition-colors" placeholder="(00) 00000-0000" required />
+                </div>
+                
+                <button type="submit" className="mt-4 btn-whatsapp rounded-xl px-6 py-4 flex items-center justify-center gap-2 font-bold text-lg w-full group/btn relative overflow-hidden shadow-[0_0_25px_rgba(37,211,102,0.3)]">
+                  <Phone className="w-5 h-5 relative z-10 animate-shake" />
+                  <span className="relative z-10">Solicitar Atendimento</span>
+                  <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-1000 ease-in-out z-0" />
+                </button>
+              </form>
+              <p className="text-center text-white/60 text-xs mt-4">Atendimento de excelência no conforto do seu lar.</p>
+            </div>
           </motion.div>
         </motion.div>
 
