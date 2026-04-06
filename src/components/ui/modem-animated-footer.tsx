@@ -106,7 +106,7 @@ export const Footer = ({
               <img 
                 src="https://pub-db8ed4fb33634589a6ce5fb07e85cb46.r2.dev/logo/op7/logo.svg" 
                 alt="OP7" 
-                className="h-5 object-contain" 
+                className="h-[60px] object-contain" 
                 referrerPolicy="no-referrer" 
               />
             </div>
